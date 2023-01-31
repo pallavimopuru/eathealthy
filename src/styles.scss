@@ -1,0 +1,150 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+.eat-healthy-heading {
+  color: darkorange;
+  font-style: italic;
+}
+.min-height {
+  padding-top: 20px;
+  min-height: 80vh;
+}
+.disable {
+  background-color: lightgrey;
+}
+.btn-black {
+  background-color: black;
+  color: white;
+}
+
+.d-end {
+  display: flex;
+  justify-content: end;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.blue {
+  color: blue;
+}
+a {
+  text-decoration: none;
+}
+// a:hover{
+//   background-color: red;
+//   color: white;
+// }
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.text-success {
+  color: green;
+}
+.text-danger {
+  color: red;
+}
+.text-special {
+  color: blue;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.btn-color {
+  background-color: #ffa700;
+  top: -28px;
+  left: 219px;
+  padding: 5px;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  position: relative;
+  border: none;
+  font-weight: 500;
+}
+.img-width {
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+.sNAfh {
+  color: #ce4725;
+}
+.error,
+.is-invalid,
+.invalid-feedback {
+  color: red;
+}
+.footer-bg {
+  min-height: 5vh;
+  background-color: #ce4725;
+}
+.franch {
+  box-shadow: 0 3px 6px #00000029;
+  padding: 268px;
+}
+.bg-ghost-white {
+  background-color: #f8f8ff;
+}
+label {
+  text-align: left;
+  margin: 4px;
+}
+.form-control {
+  height: calc(2.5rem + 2px);
+}
+input {
+  width: 600px;
+}
+.red-box {
+  border: 1px solid red !important;
+}
+input:focus {
+  outline: none;
+}
+
+p {
+  // text-align: center;
+  // animation-name: fadeInOut, moveLeft300px, bounce;
+  // animation-duration: 90000s, 5s, 1s;
+  // animation-iteration-count: 2, 1, 5;
+  min-height: 0vh;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-outline-primary:hover {
+  background-color: #f3e9e6;
+  color: #ce4725 !important;
+  border: 1px solid #ce4725;
+}
+.align-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-primary {
+  color: #fff !important;
+  background-color: #628891 !important;
+  border-color: #628891 !important;
+  border-radius: 1px !important;
+  padding: 5px 55px !important;
+}
+.contact-border{
+  padding: 200px !important;
+}
+a{
+  text-decoration: none !important;
+}
+.bodycontent {
+  min-height: 100vh;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

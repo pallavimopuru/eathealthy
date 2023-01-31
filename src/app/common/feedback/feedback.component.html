@@ -1,0 +1,288 @@
+<app-header></app-header>
+<div class="">
+  <h4 class="my-2 text-center">Eat Healthy Feedback !!!!.....</h4>
+  <div class="container">
+    <div class="col-md-12 d-flex align-end my-2">
+      <!-- <button class="btn btn-primary">{{today | date:'yyyy'}}
+      </button> &nbsp; -->
+      <button class="btn btn-primary ml-2">{{ today | date }}</button>
+    </div>
+  </div>
+  <div class="container-fluid bg-ghost-white py-4 bodycontent">
+    <div class="container bg-white py-3 contact-border franch">
+      <div class="col-md-12">
+        <p class="text-center my-4">
+          If you have a suggesssion or any feedback for us, we'd love to hear it
+        </p>
+        <form [formGroup]="feedbackform">
+          <label class="label-name">Name:</label><span class="error">*</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Enter Name"
+            required
+            [ngClass]="
+              (isformvalid && feedbackform.get('name').invalid) ||
+              (feedbackform.get('name').invalid &&
+                feedbackform.get('name').touched)
+                ? 'red-box'
+                : ''
+            "
+          />
+          <div
+            class="error"
+            *ngIf="
+              (feedbackform.get('name').invalid &&
+                feedbackform.get('name').touched) ||
+              (feedbackform.get('name').invalid && isformvalid)
+            "
+          >
+            Enter name
+          </div>
+          <br />
+          <label>
+            Phone Number:<span class="error">*</span>
+            <input
+              type="phonenumber"
+              class="form-control"
+              formControlName="phonenumber"
+              [ngClass]="
+                (isformvalid && feedbackform.get('phonenumber')?.invalid) ||
+                (feedbackform.get('phonenumber')?.touched &&
+                  feedbackform.get('phonenumber')?.invalid)
+                  ? 'red-box'
+                  : ''
+              "
+            />
+            <div
+              class="error"
+              *ngIf="
+                (feedbackform.get('phonenumber')?.invalid &&
+                  feedbackform.get('phonenumber')?.touched) ||
+                (feedbackform.get('phonenumber')?.invalid && isformvalid)
+              "
+            >
+              Enter phonenumber
+            </div>
+
+            <div
+              class="error"
+              *ngIf="
+                isformvalid &&
+                feedbackform.get('phonenumber').hasError('pattern') &&
+                feedbackform.get('email').invalid
+              "
+            >
+              Enter valid phonenumber
+            </div>
+          </label>
+
+          <br />
+          <label class="label-name">Email:<span class="error">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter Email"
+            required
+            [ngClass]="
+              (isformvalid && feedbackform.get('email')?.invalid) ||
+              (feedbackform.get('email')?.touched &&
+                feedbackform.get('email')?.invalid)
+                ? 'red-box'
+                : ''
+            "
+          />
+          <div
+            class="error"
+            *ngIf="
+              (feedbackform.get('email')?.errors.required &&
+                feedbackform.get('email')?.touched) ||
+              (feedbackform.get('email')?.errors.required && isformvalid)
+            "
+          >
+            Enter email
+          </div>
+
+          <div
+            class="error"
+            *ngIf="
+              isformvalid &&
+              feedbackform.get('email').hasError('pattern') &&
+              feedbackform.get('email').invalid
+            "
+          >
+            Enter valid email
+          </div>
+          <br />
+          <label class="label-name"
+            >Add Adress:<span class="error">*</span></label
+          >
+
+          <div>
+            <input
+              type="radio"
+              name="addadress"
+              formControlName="addadress"
+              class="radio-btn"
+              value="yes"
+            />
+            <label class="text-bold label-name">Yes</label>
+            <input
+              type="radio"
+              name="addadress"
+              formControlName="addadress"
+              class="radio-btn"
+              value="no"
+            />
+            <label class="text-bold label-name">No</label>
+          </div>
+          <div *ngIf="f.addadress.value == 'yes'">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="adress"
+              placeholder="Enter adress"
+              required
+              [ngClass]="
+                (isformvalid && feedbackform.get('adress')?.invalid) ||
+                (feedbackform.get('adress')?.invalid &&
+                  feedbackform.get('adress')?.touched)
+                  ? 'red-box'
+                  : ''
+              "
+            />
+            <div
+              class="error"
+              *ngIf="
+                (feedbackform.get('adress')?.invalid &&
+                  feedbackform.get('adress')?.touched) ||
+                (feedbackform.get('adress')?.invalid && isformvalid)
+              "
+            >
+              Enter Adress
+            </div>
+          </div>
+          <br />
+          <label class="label-name"
+            >Add comments:<span class="error">*</span></label
+          >
+          <textarea
+            id="w3review"
+            name="w3review"
+            rows="4"
+            cols="80"
+            type="text"
+            class="form-control"
+            formControlName="msg"
+            placeholder="Add comments"
+            required
+            [ngClass]="
+              (isformvalid && feedbackform.get('msg')?.invalid) ||
+              (feedbackform.get('msg')?.invalid &&
+                feedbackform.get('msg')?.touched)
+                ? 'red-box'
+                : ''
+            "
+          ></textarea>
+          <div
+            class="error"
+            *ngIf="
+              (feedbackform.get('msg')?.invalid &&
+                feedbackform.get('msg')?.touched) ||
+              (feedbackform.get('msg')?.invalid && isformvalid)
+            "
+          >
+            Add comments
+          </div>
+          <br />
+
+          <div>
+            <!-- <p-fileUpload
+              #fubauto
+              mode="basic"
+              name="demo[]"
+              url="./upload.php"
+              accept="application/pdf*"
+              (onUpload)="onBasicUploadAuto($event)"
+              [auto]="false"
+              chooseLabel="Browse"
+              class="btn btn-primary"
+              >upload</p-fileUpload
+            > -->
+          </div>
+          <br />
+          <div>
+            <label>Upload photo <span class="error">*</span></label
+            ><br />
+            <!-- <input type="text" (change)="getName(name.value)" #name  /> -->
+            <input
+              type="file"
+              (change)="getFile($event)"
+              formControlName="upload"
+            />
+            <!-- <input
+              type="button"
+              (click)="submitfile()"
+              value="uploadfile"
+            /> -->
+            <div
+              class="error"
+              *ngIf="
+                (feedbackform.get('upload').invalid &&
+                  feedbackform.get('upload').touched) ||
+                (feedbackform.get('upload').invalid && isformvalid)
+              "
+            >
+              Please upload image
+            </div>
+          </div>
+
+          <br />
+          <div class="text-left">
+            <h4>Food rating</h4>
+            <!-- <input formControlName="rating"/> -->
+            <ngb-rating [max]="5" formControlName="rating" [(rate)]="rating"> </ngb-rating><br />
+
+            <div
+              class="error"
+              *ngIf="
+                (feedbackform.get('rating')?.invalid &&
+                  feedbackform.get('rating')?.touched) ||
+                (feedbackform.get('rating')?.invalid && isformvalid)
+              "
+            >
+              Please give rating
+            </div>
+          </div>
+          <br />
+
+          <div class="text-center">
+            <p>{{ get() }}</p>
+            <p>{{ ssn }}</p>
+            <p>{{ local }}</p>
+
+            <button class="btn btn-primary" (click)="feedbacksubmit()">
+              Feedback form</button
+            ><br /><br />
+            <button class="btn btn-primary" (click)="removeitem()">
+              remove item</button
+            ><br /><br />
+            <button class="btn btn-primary" (click)="clearAll()">
+              clearAll
+            </button>
+            <br />
+            <button class="btn btn-primary" (click)="retrive()">retrive</button>
+
+            <br />
+            <!-- <button (click)="save()" class="btn btn-primary">
+              save to session
+            </button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

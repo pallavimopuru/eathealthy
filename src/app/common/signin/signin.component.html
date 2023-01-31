@@ -1,0 +1,240 @@
+<div class="container-fluid bg-ghost-white">
+  <div class="space-between">
+    <div>
+      <a href="#" routerLink="/" class="logo eat-healthy-heading"
+        ><img src="../../../assets/food.jfif" width="40px;" height="40px;" />Eat
+        Healthy</a
+      >
+    </div>
+    <!-- <div>
+      <button class="btn btn-outline-primary">
+        <a href="/login"><i class="bi bi-box-arrow-right"></i>login</a>
+      </button>
+    </div> -->
+  </div>
+</div>
+<div class="container-fluid bg-ghost-white my-4 bodycontent">
+  <div class="container bg-white py-3 contact-border franch">
+    <div class="col-md-12 text-center">
+      <form [formGroup]="sigininform">
+        <h3>Siginup for your account</h3>
+
+        <label>
+          First Name:<span class="error">*</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="firstName"
+            [ngClass]="
+             (isformvalid &&
+              sigininform.get('firstName').invalid) ||
+
+              (sigininform.get('firstName').touched && sigininform.get('firstName').invalid)
+                ? 'red-box'
+                : ''
+            "
+          />
+          <div
+            class="error"
+            *ngIf="
+            (sigininform.get('firstName').touched && sigininform.get('firstName').invalid)
+            ||(isformvalid &&
+            sigininform.get('firstName').hasError('required'))
+           "
+          >
+            Enter first Name
+          </div>
+          <div
+            class="error"
+            *ngIf="
+            (sigininform.get('firstName').touched && sigininform.get('firstName').invalid) ||
+             (isformvalid &&
+              sigininform.get('firstName').hasError('minlength'))
+            "
+          >
+            Enter minumun 5 letters first Name
+          </div>
+        </label>
+        <br />
+        <label>
+          Last Name:
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            [ngClass]="
+              (isformvalid &&
+              sigininform.get('lastName').invalid )||
+
+              ( sigininform.get('lastName').touched && sigininform.get('lastName').invalid)
+                ? 'red-box'
+                : ''
+            "
+          />
+          <div
+            class="error"
+            *ngIf="
+              (sigininform.get('lastName').touched && sigininform.get('lastName').invalid)||
+             ( sigininform.get('lastName').hasError('required') && isformvalid)
+            "
+          >
+            Enter Last Name
+          </div>
+          <!-- <div class="error" *ngIf="sigininform.get('lastName').touched && sigininform.get('lastName').hasError('minlength')">Enter minumun 5 letters Last Name</div> -->
+          <!-- <div class="error" *ngIf="sigininform.controls['lastName'].errors['minlength']">Enter Last Name</div> -->
+          <div
+            class="error"
+            *ngIf="
+            (sigininform.get('lastName').touched && sigininform.get('lastName').invalid)||
+           ( sigininform.get('lastName').hasError('minlength') && isformvalid)
+
+            "
+          >
+            Enter minumun 5 letters Last Name
+          </div>
+        </label>
+        <br />
+        <label>
+          Email:<span class="error">*</span>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            [ngClass]="(isformvalid && sigininform.get('email').invalid )|| (sigininform.get('email').touched && sigininform.get('email').invalid ) ? 'red-box':''"
+
+          />
+          <div
+            class="error"
+            *ngIf="
+             ( sigininform.get('email').touched && sigininform.get('email').invalid)||
+              (sigininform.get('email').hasError('required') && isformvalid)
+            "
+          >
+            Enter Email
+          </div>
+
+          <div
+            class="error"
+            *ngIf="
+              (sigininform.get('email').touched && sigininform.get('email').invalid)||
+              (sigininform.get('email').hasError('pattern') && isformvalid)
+            "
+          >
+            Enter valid email
+          </div>
+
+          <!-- <p *ngIf="emailWithEmail.errors?.required">
+
+    Email is a required field!
+
+  </p> -->
+        </label>
+        <br />
+        <label>
+          Phone Number:<span class="error">*</span>
+          <input
+            type="phonenumber"
+            class="form-control"
+            formControlName="phonenumber"
+            [ngClass]="(isformvalid && sigininform.get('phonenumber').invalid )|| (sigininform.get('phonenumber').touched && sigininform.get('phonenumber').invalid ) ? 'red-box':''"
+          />
+          <div
+            class="error"
+            *ngIf="
+             ( sigininform.get('phonenumber').touched && sigininform.get('phonenumber').invalid)||
+              (sigininform.get('phonenumber').hasError('required') && isformvalid)
+            "
+          >
+            Enter phonenumber
+          </div>
+
+          <div
+            class="error"
+            *ngIf="
+              (sigininform.get('phonenumber').touched && sigininform.get('phonenumber').invalid)||
+              (sigininform.get('phonenumber').hasError('pattern') && isformvalid)
+            "
+          >
+            Enter valid phonenumber
+          </div>
+        </label>
+
+        <br />
+        <label>
+          Password:<span class="error">*</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="password"
+
+            [ngClass]="
+            (isformvalid && sigininform.get('password').invalid) || (sigininform.get('password').invalid && sigininform.get('password').touched )? 'red-box':''"
+
+          />
+          <div
+            class="error"
+            *ngIf="
+              (sigininform.get('password').touched && sigininform.get('password').invalid) ||
+              (sigininform.get('password').hasError('required')&& isformvalid)
+            "
+          >
+            Enter password
+          </div>
+
+          <div
+            class="error"
+            *ngIf="
+              (sigininform.get('password').touched && sigininform.get('password').invalid) ||
+              (sigininform.get('password').hasError('pattern') && sigininform.get('password').invalid)
+            "
+          >
+            Enter valid password
+          </div>
+        </label>
+        <br />
+        <!-- <label>
+          Confirm Password:<span class="error">*</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="confirmpassword"
+            [ngClass]="{
+              'red-box': !isformvalid && sigininform.get('firstName').touched
+            }"
+          />
+          <div
+            class="error"
+            *ngIf="
+              sigininform.get('confirmpassword').touched &&
+              sigininform.get('confirmpassword').hasError('required')
+            "
+          >
+            Enter confirmpassword
+          </div>
+
+          <div
+            class="error"
+            *ngIf="
+              sigininform.get('confirmpassword').touched &&
+              sigininform.get('confirmpassword').hasError('pattern')
+            "
+          >
+            Enter valid confirmpassword
+          </div>
+        </label>
+        <br /> -->
+        <p>Already a member? &nbsp;<a href="/login">login </a></p>
+
+        <br />
+        <button
+          type="button"
+          class="btn btn-primary mt-2"
+          (click)="callingFunction()"
+
+        >
+          Submit signin
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

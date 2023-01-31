@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container-fluid min-height">
+  <button >add food</button>
+
+  <div class="row">
+    <div class="col-md-3 mt-3" *ngFor="let food of foods; let i = index">
+      <img
+        src="{{ food.Img }}"
+        alt="food img"
+        class="img-fluid img-width"
+      /><br />
+
+      <!-- <button class="btn-color" *ngIf="food.count!=0" (click)="reduce(i)">-</button>  &nbsp; -->
+      <button class="btn-color" (click)="addReduce(i)">{{ food.count==0 ? "Add":"" }}</button>&nbsp;
+      <!-- <button class="btn-color" *ngIf="food.count!=0" (click)="addReduce(i)">+</button> -->
+      <button class="btn-color addrem" *ngIf="food.count!=0"><span (click)="reduce(i)">-</span>&nbsp;{{food.count}} &nbsp;<span  (click)="addReduce(i)">+</span></button>
+      <div>
+        <div>
+          <span
+            ><span class="sNAfh"
+              >f634 {{ percentage}}% off | Use WELCOME50</span
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+{{year}}
+  <!-- Modal -->
+  <li *ngFor="let employee of employees; let i = index">{{ employee.name }}</li>
+
+  <li *ngFor="let row of groups">
+    {{ row.age }}
+  </li>
+  <!-- <span *ngFor="let name of row.status| slice:0.2; let j=index;">
+  {{name}}
+</span> -->
+</div>
