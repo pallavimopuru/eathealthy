@@ -22,6 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRating} from '@ng-bootstrap/ng-bootstrap';
 import { AboutusComponent } from './common/aboutus/aboutus.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -36,7 +37,8 @@ import { AboutusComponent } from './common/aboutus/aboutus.component';
         OffersComponent,
         LoginComponent,
         FeedbackComponent,
-        AboutusComponent
+        AboutusComponent,
+        SidebarComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

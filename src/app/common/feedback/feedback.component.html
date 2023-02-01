@@ -21,7 +21,6 @@
             class="form-control"
             formControlName="name"
             placeholder="Enter Name"
-            required
             [ngClass]="
               (isformvalid && feedbackform.get('name').invalid) ||
               (feedbackform.get('name').invalid &&
@@ -85,7 +84,6 @@
             class="form-control"
             formControlName="email"
             placeholder="Enter Email"
-            required
             [ngClass]="
               (isformvalid && feedbackform.get('email')?.invalid) ||
               (feedbackform.get('email')?.touched &&
@@ -144,7 +142,6 @@
               class="form-control"
               formControlName="adress"
               placeholder="Enter adress"
-              required
               [ngClass]="
                 (isformvalid && feedbackform.get('adress')?.invalid) ||
                 (feedbackform.get('adress')?.invalid &&
@@ -177,7 +174,6 @@
             class="form-control"
             formControlName="msg"
             placeholder="Add comments"
-            required
             [ngClass]="
               (isformvalid && feedbackform.get('msg')?.invalid) ||
               (feedbackform.get('msg')?.invalid &&
@@ -243,7 +239,7 @@
           <div class="text-left">
             <h4>Food rating</h4>
             <!-- <input formControlName="rating"/> -->
-            <ngb-rating [max]="5" formControlName="rating" [(rate)]="rating"> </ngb-rating><br />
+            <ngb-rating [max]="5" formControlName="rating"> </ngb-rating><br />
 
             <div
               class="error"
