@@ -1,6 +1,60 @@
 <app-header></app-header>
 <p>cart works!</p>
-<div class="container min-height">
+<div class="min-height">
+<div class="">
+  <button class="btn btn-primary" (click)="toggle()">
+   {{ buttonName}}
+  </button>
+  <br/>
 
+    <div *ngIf="onlyodd">
+      <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngfor="let odd of oddNumbers"
+        [ngClass]="{odd:odd % 2 !==0}"
+        [ngStyle]="{backgroundcolor:odd % 2 !==0 ? 'yellow':'transparent'}"
+      >
+      {{ odd }}
+      </li>
+      </ul>
+    </div>
+    <div *ngif="!onlyodd">
+      <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngfor="let even of evenNumbers"
+        [ngClass]="{even:even % 2 !==0}"
+        [ngStyle]="{backgroundcolor:even % 2 !==0 ? 'yellow':'transparent'}"
+      >
+        {{ even }}
+      </li>
+      </ul>
+    </div>
+    <button (click)="showngtemplate()">{{btn}}</button>
+    <!-- <ng-template [ngIf]="show">
+      <p class="text-left">bind to ngtemplate</p>
+    </ng-template> -->
+    <div *appUnless="show">
+      <p class="text-left">bind to ngtemplate</p>
+    </div>
+  </div>
+<div appBasicHighlight><p>style me with the basic directive</p></div>
+<div appBetterHighlight><p>bind to directive</p></div>
+<div appBetterHighlight [defaultColor]="'green'" [hilghlightColor]="'blue'"><p>bind directive by adding methods here</p></div>
+<div [ngSwitch]="value">
+<p *ngSwitchCase="5">value is 5</p>
+<p *ngSwitchCase="15">value is 15</p>
+<p *ngSwitchCase="25">value is 25</p>
+<p *ngSwitchDefault>default</p>
+
+<br/>
+<li class="dropdown" appDropdown>
+  <a class="dropdown-toggle" role="button">Manage</a>
+  <ul class="dropdown-menu">
+    <li><a>save data</a></li>
+    <li><a>fetch data</a></li>
+  </ul>
+</li>
 </div>
 <app-footer></app-footer>

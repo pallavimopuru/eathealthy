@@ -6,6 +6,9 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { BetterHighlightDirective } from './basic-hilight/better-highlight.directive';
+import { UnlessDirective } from './basic-hilight/unless.directive';
+import { DropdownDirective } from './basic-hilight/dropdown.directive';
 @NgModule({
     declarations: [
 
@@ -16,7 +19,10 @@ import { AboutusComponent } from './aboutus/aboutus.component';
          CartComponent,
          LoginComponent,
          FeedbackComponent,
-         AboutusComponent
+         AboutusComponent,
+         BetterHighlightDirective,
+         UnlessDirective,
+         DropdownDirective
   ],
     imports: [
       NgModule

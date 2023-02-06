@@ -1,6 +1,45 @@
 <app-header></app-header>
 <div class="">
-  <p>aboutus works!</p>
-<app-sidebar></app-sidebar>
+  <div class="row mt-4">
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10">
+      <button (click)="toggle()" id="bt" class="btn btn-primary">
+        {{ buttonName }}
+      </button>
+
+      <ng-container *ngIf="show">
+        <div [FormGroup]="aboutform">
+          <div style="margin: 0 auto; text-align: left;">
+            <div>
+              <label>Name:</label>
+              <div>
+                <input
+                formControlName="yourname"
+                  name="yourname"  class="form-control"
+
+                />
+
+              </div>
+            </div>
+            <div>
+              <label>Email Address:</label>
+
+                <div><input name="email"   formControlName="email"  class="form-control"
+                /></div>
+            </div>
+            <div>
+              <label>Additional Information (optional):</label>
+              <div>
+                <textarea rows="5" cols="46" name="textarea" formControlName="textarea"  class="form-control" ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="btn btn-primary"  (click)="aboutsubmit()">Submit</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>

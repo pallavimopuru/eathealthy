@@ -23,6 +23,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRating} from '@ng-bootstrap/ng-bootstrap';
 import { AboutusComponent } from './common/aboutus/aboutus.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { BasicHighlightDirective } from './common/basic-hilight/basic-highlight.directive';
+import { BetterHighlightDirective } from './common/basic-hilight/better-highlight.directive';
+import { UnlessDirective } from './common/basic-hilight/unless.directive';
+import { DropdownDirective } from './common/shared/dropdown.directive';
+
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,7 +45,11 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
         LoginComponent,
         FeedbackComponent,
         AboutusComponent,
-        SidebarComponent
+        SidebarComponent,
+        BasicHighlightDirective,
+        BetterHighlightDirective,
+        UnlessDirective,
+        DropdownDirective
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -57,7 +68,8 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
         FileUploadModule,
         HttpClientModule,
         NgbModule,
-        NgbRating
+        NgbRating,
+
     ]
 })
 export class AppModule {

@@ -108,7 +108,9 @@ input {
 input:focus {
   outline: none;
 }
-
+.button:focus {
+  outline: none;
+}
 p {
   // text-align: center;
   // animation-name: fadeInOut, moveLeft300px, bounce;
@@ -136,10 +138,10 @@ p {
   border-radius: 1px !important;
   padding: 5px 55px !important;
 }
-.contact-border{
+.contact-border {
   padding: 200px !important;
 }
-a{
+a {
   text-decoration: none !important;
 }
 .bodycontent {
@@ -147,4 +149,4 @@ a{
 }
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
