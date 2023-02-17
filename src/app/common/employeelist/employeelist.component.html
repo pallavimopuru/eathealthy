@@ -1,0 +1,48 @@
+<p>employeelist works!</p>
+<!-- <div *ngFor="let employee of employees">
+  {{employee.id}}.{{employee.name}}-{{employee.age}}
+</div> -->
+
+<tbody>
+  <tr *ngFor="let item of employees; let i =index">
+     <td>{{i}}</td>
+     <td>{{item.id}} {{item.name}}-{{item.age}}</td>
+  </tr>
+  <br/>
+  <tr *ngFor="let item of groups; let i =index">
+    <td>{{i}}</td>
+    <td>{{item.id}} {{item.name}}-{{item.age}}</td>
+ </tr>
+ <br/>
+ <tr *ngFor="let item of employee; let i =index">
+  <td>{{i}}</td>
+  <td>{{item.employee_age}} {{item.employee_name}}-{{item.employee_salary}}</td>
+  <tr *ngFor="let item of api; let i =index">
+    <td>{{i}}</td>-
+    <td>{{item.user_id}}-{{item.api}}-{{item.title}}</td>
+<!-- {{employee | json}} -->
+
+</tr>
+
+</tbody>
+<label for="emp">Employee api</label>
+
+<select name="emp" id="emp" (change)="changeemp($event)">
+  <option value="volvo">--Select--</option>
+  <option value="saab" [value]="empapi.id" *ngFor="let empapi of api">{{empapi.name}}</option>
+
+</select>
+selectedvalue:{{selectedvalue}}
+
+<p-multiSelect [options]="api" [(ngModel)]="selectedEmployees" optionLabel="name"></p-multiSelect>
+
+<p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Show"></p-button>
+<p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

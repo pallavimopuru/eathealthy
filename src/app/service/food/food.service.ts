@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FoodService {
+  FoodService(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
+  logStatusChanges(status:string){
+    console.log('a server status got chnagesd'+status)
+  }
   constructor() {}
   getAll() {
     // return[

@@ -150,3 +150,14 @@ a {
 
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.p-calendar .p-datepicker ,.p-datepicker-header  {
+  min-width: 100%;
+  transform-origin: center bottom;
+  top: -76px;
+  left: 0px;
+  background: white;
+  border: 1px solid black;
+}

@@ -27,9 +27,12 @@ import { BasicHighlightDirective } from './common/basic-hilight/basic-highlight.
 import { BetterHighlightDirective } from './common/basic-hilight/better-highlight.directive';
 import { UnlessDirective } from './common/basic-hilight/unless.directive';
 import { DropdownDirective } from './common/shared/dropdown.directive';
-
-
-
+import { EmployeService } from './common/employe.service';
+import { EmployeelistComponent } from './common/employeelist/employeelist.component';
+import { CaluclatorComponent } from './common/caluclator/caluclator.component';
+import {CalendarModule} from 'primeng/calendar';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
     declarations: [
         AppComponent,
@@ -49,15 +52,21 @@ import { DropdownDirective } from './common/shared/dropdown.directive';
         BasicHighlightDirective,
         BetterHighlightDirective,
         UnlessDirective,
-        DropdownDirective
+        DropdownDirective,
+        EmployeelistComponent,
+        CaluclatorComponent,
+
+
     ],
-    providers: [],
+    providers: [EmployeService],  //we are injecting employee service in providers so whole application acn use service
     bootstrap: [AppComponent],
     schemas: [
       CUSTOM_ELEMENTS_SCHEMA,
       NO_ERRORS_SCHEMA
     ],
     imports: [
+      DialogModule,
+      MultiSelectModule,
         ReactiveFormsModule,
         CommonModule,
         BrowserModule,
@@ -69,6 +78,8 @@ import { DropdownDirective } from './common/shared/dropdown.directive';
         HttpClientModule,
         NgbModule,
         NgbRating,
+        CalendarModule,
+        HttpClientModule, //we r adding http and inject
 
     ]
 })

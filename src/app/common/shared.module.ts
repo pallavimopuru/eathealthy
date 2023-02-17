@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SearchComponent } from './search/search.component';
 import { OffersComponent } from './offers/offers.component';
 import { HelppComponent } from './helpp/helpp.component';
@@ -8,11 +8,11 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { BetterHighlightDirective } from './basic-hilight/better-highlight.directive';
 import { UnlessDirective } from './basic-hilight/unless.directive';
-import { DropdownDirective } from './basic-hilight/dropdown.directive';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { CaluclatorComponent } from './caluclator/caluclator.component';
+
 @NgModule({
     declarations: [
-
-
     SearchComponent,
          OffersComponent,
          HelppComponent,
@@ -22,10 +22,13 @@ import { DropdownDirective } from './basic-hilight/dropdown.directive';
          AboutusComponent,
          BetterHighlightDirective,
          UnlessDirective,
-         DropdownDirective
+         DropdownDirective,
+         CaluclatorComponent,
+
   ],
     imports: [
       NgModule
-    ]
+    ],
+
 })
 export class SharedModule { }

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutusComponent } from './common/aboutus/aboutus.component';
+import { CaluclatorComponent } from './common/caluclator/caluclator.component';
 import { CartComponent } from './common/cart/cart.component';
 
 import { ContactComponent } from './common/contact/contact.component';
+import { EmployeelistComponent } from './common/employeelist/employeelist.component';
 import { FeedbackComponent } from './common/feedback/feedback.component';
 import { HelppComponent } from './common/helpp/helpp.component';
 import { HomeComponent } from './common/home/home.component';
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'aboutus', component: AboutusComponent },
+  { path: 'employeelist', component: EmployeelistComponent },
+  { path: 'calculator', component: CaluclatorComponent },
 
 ];
 

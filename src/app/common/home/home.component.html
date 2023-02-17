@@ -1,25 +1,11 @@
 <app-header></app-header>
 <div class="container min-height">
-<form>
-<div class="row">
-  <div class="col-md-6">
-    <label class="label-name"  name="firstName"
-  formControlName="firstName"
-  >First Name <span class="required">*</span></label>
-    <input type="text" />
-    <div >
-      enter first name
-    </div>
-  </div>
 
-<div class="col-md-6">
-  <label class="label-name"  name="lastName"
-  formControlName="lastName"
-  >Last Name <span class="required">*</span></label>
-<input type="text"/>
-</div>
-
-</div>
-</form>
+<br/>
+<button class="btn btn-primary" (click)="session()">
+  Feedback form</button
+>
+<p>{{get()}}</p>
+<p>{{getl()}}</p>
 </div>
 <app-footer></app-footer>
