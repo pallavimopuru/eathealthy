@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +34,17 @@ import { CaluclatorComponent } from './common/caluclator/caluclator.component';
 import {CalendarModule} from 'primeng/calendar';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DialogModule} from 'primeng/dialog';
+import {SliderModule} from 'primeng/slider';
+import {InputTextModule} from 'primeng/inputtext';
+import { InlineComponent } from './inline/inline.component';
+import { BootsatrapComponent } from './bootsatrap/bootsatrap.component';
+import { NormalComponent } from './normal/normal.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TableComponent } from './table/table.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {TableModule} from 'primeng/table';
+import { TablechangesComponent } from './tablechanges/tablechanges.component';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
     declarations: [
         AppComponent,
@@ -55,6 +67,12 @@ import {DialogModule} from 'primeng/dialog';
         DropdownDirective,
         EmployeelistComponent,
         CaluclatorComponent,
+        InlineComponent,
+        BootsatrapComponent,
+        NormalComponent,
+        DashboardComponent,
+        TableComponent,
+        TablechangesComponent,
 
 
     ],
@@ -75,12 +93,15 @@ import {DialogModule} from 'primeng/dialog';
         ToastrModule.forRoot(),
         BrowserAnimationsModule,
         FileUploadModule,
-        HttpClientModule,
         NgbModule,
         NgbRating,
         CalendarModule,
         HttpClientModule, //we r adding http and inject
-
+        SliderModule,
+        InputTextModule,
+        NgxPaginationModule,
+        TableModule,
+        DropdownModule
     ]
 })
 export class AppModule {

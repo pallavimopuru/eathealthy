@@ -22,4 +22,16 @@ nav ul li a{
 .nav-items:hover{
   color:darkorange !important ;
 }
-
+.cart-items{
+  border: 1px solid #cfc5c5;
+  position: absolute;
+  width: 13%;
+  right: 135px;
+  top: 58px;
+  box-shadow: 5px 10px 8px 10px #cfc5c5;
+  background-color: white;
+  padding: 10px;
+}
+.text-align-center{
+  text-align: center;
+}

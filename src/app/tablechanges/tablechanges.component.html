@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-9">
+<p>tablechanges works!</p>
+<div class="align-end my-3">
+
+  <select [(ngModel)]="selectedcolor" (change)="changerowcolor()" >
+    <option value="">--select a color--</option>
+    <option *ngFor="let color of colors" [value]="color.color">{{color.name}}</option>
+     </select>
+</div>
+<table class="w-100">
+  <tr style="background-color: #aeb0b5">
+    <th><input type="checkbox" #checkallcheckbox (click)="checkall(checkboxes,checkallcheckbox.checked)"/></th>
+<th>Name</th>
+<th>Document</th>
+<th>File size</th>
+<th>Status</th>
+  </tr>
+  <ng-container *ngFor="let color of colors; let i=index;">
+
+    <tr [style.background-color]="rowcolors[i]">
+      <td><input type="checkbox" #checkbox/></td>
+      <td>mmmm</td>
+      <td>pdf</td>
+      <td>234kb</td>
+      <td>updated</td>
+        </tr>
+        <tr >
+          <th><input type="checkbox" #checkbox/></th>
+          <td>ZZZ</td>
+          <td>pdf</td>
+          <td>234kb</td>
+          <td>Changed</td>
+            </tr>
+            <tr>
+              <th><input type="checkbox"/></th>
+              <td>yyyy</td>
+              <td>pdf</td>
+              <td>274kb</td>
+              <td>Deleted</td>
+                </tr>
+                <tr>
+                  <th><input type="checkbox"/></th>
+                  <td>TTTT</td>
+                  <td>pdf</td>
+                  <td>34kb</td>
+                  <td>Chnaged</td>
+                    </tr>
+                    <tr>
+                      <th><input type="checkbox"/></th>
+                      <td>yyyy</td>
+                      <td>Excel</td>
+                      <td>74kb</td>
+                      <td>Not changed</td>
+                        </tr>
+  </ng-container>
+</table>
+      </div>
+      </div>
+      </div>
+<app-footer></app-footer>

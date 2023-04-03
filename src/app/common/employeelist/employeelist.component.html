@@ -1,7 +1,21 @@
-<p>employeelist works!</p>
 <!-- <div *ngFor="let employee of employees">
   {{employee.id}}.{{employee.name}}-{{employee.age}}
 </div> -->
+<app-header></app-header>
+
+<div class="">
+  <div class="row">
+    <div class="col-4">
+      <!-- <ul class="text-center">
+        <li><a class="active" href="/calculator">Calculator</a></li>
+        <li><a class="active" href="/calculator">Calculator</a></li>
+        <li><a class="active" href="/calculator">Calculator</a></li>
+
+      </ul> -->
+      <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-8">
+<p>employeelist works!</p>
 
 <tbody>
   <tr *ngFor="let item of employees; let i =index">
@@ -37,12 +51,99 @@ selectedvalue:{{selectedvalue}}
 <p-multiSelect [options]="api" [(ngModel)]="selectedEmployees" optionLabel="name"></p-multiSelect>
 
 <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Show"></p-button>
-<p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p-dialog header="Header" [(visible)]="displayBasic"  [style]="{width: '50vw'}">
+    <p>{{title}}</p>
+  <form >
+    <div class="col-12 md:col-4 my-3">
+      <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" pInputText placeholder="Enter Username" name="username" [(ngModel)]="savearray.username" class="form-control">
+      </div>
+  </div>
+  <div class="col-12 md:col-4 my-3">
+    <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">$</span>
+        <input type="text" pInputText placeholder="Enter Price" name="price" [(ngModel)]="savearray.price" class="form-control">
+        <span class="p-inputgroup-addon">.00</span>
+    </div>
+</div>
+<div class="col-12 md:col-4 my-3">
+  <!-- <h5>Input: {{val2}}</h5>
+  <input type="text" pInputText [(ngModel)]="val2" />
+  <p-slider [(ngModel)]="val2" ></p-slider> -->
+<br/>
+
+
+</div>
+{{get()}}
+
+  </form>
+<div class="space-between">
+<a (click)="clear()" type="button">Refresh form</a>
+
+  <p-button icon="pi pi-check" (click)="save()" label="Save" styleClass="p-button-text text-center" ></p-button>
+</div>
+  <!-- <p-button icon="pi pi-check" (click)="remove()" label="Remove" styleClass="p-button-text"></p-button>
+  <p-button icon="pi pi-check" (click)="clear()" label="clear" styleClass="p-button-text"></p-button> -->
+
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="OK" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>
+<br/>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<button class="btn btn-primary">Activate</button>
+</div>
+</div>
+<app-footer></app-footer>
+<!-- using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
+using webapi.employee_details;
+
+namespace webapi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ListempController : ControllerBase
+    {
+        [HttpGet]
+        public List<Employee_details> employeelist()
+        {
+            Employee_details employee_Details1 = new Employee_details
+            {
+                id = 1,
+                Details = "pp",
+                employee_age = 23,
+                employee_salary = 2333,
+                employee_name = "dssd"
+
+            };
+            Employee_details employee_Details2 = new Employee_details
+            {
+                id = 1,
+                Details = "pp",
+                employee_age = 23,
+                employee_salary = 2333,
+                employee_name = "dssd"
+
+            };
+            Employee_details employee_Details3 = new Employee_details
+            {
+                id = 1,
+                Details = "pp",
+                employee_age = 23,
+                employee_salary = 2333,
+                employee_name = "dssd"
+
+            };
+            List<Employee_details> emplist = new List<Employee_details>();
+            emplist.Add(employee_Details3);
+            emplist.Add(employee_Details1);
+            emplist.Add(employee_Details2);
+            return emplist;
+
+        }
+    }
+} -->

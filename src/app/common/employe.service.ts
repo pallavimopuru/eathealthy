@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable,EventEmitter } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { Iemployee } from './emploee';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class EmployeService {
   private _url: string = '/assets/data/employees.json';
   private url: string = 'https://localhost:7142/api/Listemp';
   dropdownList: any[];
+  activatedEmitter= new EventEmitter<boolean>();
   constructor(private http: HttpClient) {} //Dependency injection register in we are adding http client
 
   getEmployees() {
@@ -27,7 +28,7 @@ export class EmployeService {
       { id: 1, name: 'andrew', age: 30 },
       { id: 2, name: 'pallu', age: 20 },
       { id: 3, name: 'gem', age: 70 },
-      { id: 3, name: 'rexa', age: 70 },
+      { id: 4, name: 'rexa', age: 70 },
     ];
   }
   getEmployee() {
@@ -41,7 +42,9 @@ export class EmployeService {
   }
   getData() {
 
-    return this.http.get('https://gorest.co.in/public/v2/users');
+    return this.http.get('https://gorest.co.in/public/v2/users').pipe(map(responseData => {
+
+    }));
   }
   getapitoPromise() {
     return  this.http.get(`https://localhost:7142/api/Listemp`).toPromise();

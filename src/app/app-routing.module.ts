@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BootsatrapComponent } from './bootsatrap/bootsatrap.component';
 import { AboutusComponent } from './common/aboutus/aboutus.component';
 import { CaluclatorComponent } from './common/caluclator/caluclator.component';
 import { CartComponent } from './common/cart/cart.component';
@@ -13,6 +14,10 @@ import { LoginComponent } from './common/login/login.component';
 import { OffersComponent } from './common/offers/offers.component';
 import { SearchComponent } from './common/search/search.component';
 import { SigninComponent } from './common/signin/signin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NormalComponent } from './normal/normal.component';
+import { TableComponent } from './table/table.component';
+import { TablechangesComponent } from './tablechanges/tablechanges.component';
 
 
 
@@ -30,7 +35,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'employeelist', component: EmployeelistComponent },
-  { path: 'calculator', component: CaluclatorComponent },
+  { path: 'Caluclator', component: CaluclatorComponent },
+  { path: 'bootsatrap', component: BootsatrapComponent },
+  { path: 'normal', component: NormalComponent },
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'table', component: TableComponent},
+  { path: 'tablechanges', component: TablechangesComponent},
 
 ];
 

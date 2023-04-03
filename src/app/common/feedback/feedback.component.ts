@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmployeService } from '../employe.service';
 
 @Component({
   selector: 'app-feedback',
@@ -25,7 +26,12 @@ export class FeedbackComponent {
   name: string = '';
   local: any;
   ssn: any;
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  useractivated: false;
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private _employeservice: EmployeService
+  ) {}
   feedbackinfoform() {
     this.feedbackform = this.fb.group({
       msg: ['', [Validators.required]],
@@ -62,6 +68,7 @@ export class FeedbackComponent {
     if (this.feedbackform.valid) {
       this.isformvalid = false;
       this.router.navigateByUrl('/contact');
+
     } else {
       this.isformvalid = true;
       alert('please fill manditory fields');

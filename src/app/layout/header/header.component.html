@@ -1,7 +1,9 @@
-
 <header>
   <div class="container">
-    <a href="/contact"  class="logo eat-healthy-heading"><img src="../../../assets/food.jfif" width="40px;" height="40px;">Eat Healthy</a>
+    <a href="/contact" class="logo eat-healthy-heading"
+      ><img src="../../../assets/food.jfif" width="40px;" height="40px;" />Eat
+      Healthy</a
+    >
     <nav>
       <ul class="d-flex nav-names">
         <li>
@@ -19,11 +21,25 @@
         <li>
           <a class="nav-items" href="/signin">Signin</a>
         </li>
-        <li >
-          <a class="nav-items"  href="/feedback">Feedback</a>
+        <li>
+          <a class="nav-items" href="/feedback">Feedback</a>
         </li>
-        <li >
-          <a class="nav-items"  href="/cart">Cart</a>
+        <li>
+          <a class="nav-items"
+            ><button (click)="toggle()" class="btn btn-primary" id="bt">
+              {{ buttonName }}
+            </button></a
+          >
+          <ng-container *ngIf="show">
+            <div style="margin: 0 auto; text-align: left">
+              <div class="cart-items">
+                <div class="text-align-center" *ngFor="let group of groups">
+                  {{ group.name }}
+                </div>
+              </div>
+
+            </div>
+          </ng-container>
         </li>
       </ul>
     </nav>

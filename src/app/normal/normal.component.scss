@@ -1,0 +1,12 @@
+::ng-deep .input-group-text {
+
+  padding: 0.7rem 0.75rem !important;
+
+  //  border-radius: 0 !important;
+   border-top-left-radius: 0;
+   border-bottom-left-radius: 0;
+}
+.red-box1{
+  max-width: fit-content;
+  border: 1px solid red;
+}

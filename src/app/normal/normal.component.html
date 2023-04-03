@@ -1,0 +1,353 @@
+<p>normal works!</p>
+<div class="container">
+  <div class="d-grid gap-2 col-4 mx-auto">
+    <div>
+      <form [formGroup]="normalform">
+        <label class="label-name">Name:<span class="error">*</span></label>
+        <input
+          type="text"
+          class=""
+          formControlName="name"
+          class="form-control"
+          placeholder="Enter Name"
+          [ngClass]="
+            (isformvalid && normalform.get('name').invalid) ||
+            (normalform.get('name').touched && normalform.get('name').invalid)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('name').touched &&
+              normalform.get('name').invalid) ||
+            (isformvalid && normalform.get('name').hasError('required'))
+          "
+        >
+          Enter name
+        </div>
+        <div
+          class="error"
+          *ngIf="isformvalid && normalform.get('name').hasError('pattern')"
+        >
+          Enter valid Name
+        </div>
+        <br />
+        <label class="label-name"
+          >Phone Number:<span class="error">*</span></label
+        >
+        <input
+          type="number"
+          class="form-control"
+          formControlName="phonenumber"
+          placeholder="Enter phonenumber"
+          [ngClass]="
+            (isformvalid && normalform.get('phonenumber').invalid) ||
+            (normalform.get('phonenumber').invalid &&
+              normalform.get('phonenumber').touched)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('phonenumber').invalid &&
+              normalform.get('phonenumber').touched) ||
+            (isformvalid && normalform.get('phonenumber').hasError('required'))
+          "
+        >
+          Enter phonenumber
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('phonenumber').invalid &&
+              normalform.get('phonenumber').touched) ||
+            (isformvalid && normalform.get('phonenumber').hasError('pattern'))
+          "
+        >
+      Enter Valid phonenumber
+      </div>
+        <br />
+        <label>Age:<span class="error">*</span></label>
+        <input
+          type="number"
+          formControlName="age"
+          placeholder="Enter age"
+          class="form-control"
+          [ngClass]="
+            (isformvalid && normalform.get('age').invalid) ||
+            (normalform.get('age').invalid && normalform.get('age').touched)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('age').touched && normalform.get('age').invalid) ||
+            (isformvalid && normalform.get('age').hasError('required'))
+          "
+        >
+          Enter age
+        </div>
+        <div
+        class="error"
+        *ngIf="
+          (normalform.get('age').touched && normalform.get('age').invalid) ||
+          (isformvalid && normalform.get('age').hasError('pattern'))
+        "
+      >
+        Enter age min 18 to 120
+      </div>
+        <br />
+        <label> Email:<span class="error">*</span></label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter email"
+          class="form-control"
+          [ngClass]="
+            (isformvalid && normalform.get('email').invalid) ||
+            (normalform.get('email').touched && normalform.get('email').invalid)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('email').touched &&
+              normalform.get('email').invalid) ||
+            (isformvalid && normalform.get('email').hasError('required'))
+          "
+        >
+          Enter email
+        </div>
+        <div
+          class="error"
+          *ngIf="isformvalid && normalform.get('email').hasError('pattern')"
+        >
+          Enter valid Email
+        </div>
+
+        <br />
+        <div class="mt-2">
+          <label> Choose Role:<span class="error">*</span></label
+          ><br />
+          <select
+            type="dropdown"
+            formControlName="dropdown"
+            class="form-control"
+            (change)="changecity($event)"
+            [ngClass]="
+              (isformvalid && normalform.get('dropdown').invalid) ||
+              (normalform.get('dropdown').touched &&
+                normalform.get('dropdown').invalid)
+                ? 'red-box'
+                : ''
+            "
+          >
+            <option value="">Choose Role</option>
+            <option *ngFor="let city of City">{{ city }}</option>
+          </select>
+          <div
+            class="error"
+            *ngIf="
+              (normalform.get('dropdown').invalid &&
+                normalform.get('dropdown').touched) ||
+              (isformvalid && normalform.get('dropdown').hasError('required'))
+            "
+          >
+            Choose Role
+          </div>
+
+        </div>
+
+
+        <div id="input-field"   *ngIf="normalform.get('dropdown').value=='Other'">
+          <label for="other-option">Please specify Other:</label>
+          <input type="text" id="other-option" class="form-control">
+        </div>
+        <br />
+        <label for="w3review">Text Message:<span class="error">*</span></label
+        ><br />
+
+        <textarea
+          id="w3review"
+          name="w3review"
+          rows="4"
+          cols="50"
+          type="text"
+          formControlName="textera"
+          class="form-control"
+          placeholder="Text Message"
+          [ngClass]="
+            (isformvalid && normalform.get('textera').invalid) ||
+            (normalform.get('textera').touched &&
+              normalform.get('textera').invalid)
+              ? 'red-box'
+              : ''
+          "
+        >
+        At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+        </textarea>
+        <div
+          class="error"
+          *ngIf="
+            (normalform.get('textera').invalid &&
+              normalform.get('textera').touched) ||
+            (isformvalid && normalform.get('textera').hasError('required'))
+          "
+        >
+          Enter text Message
+        </div>
+        <br />
+
+        <div class="field col-12 md:col-4">
+          <label for="w3review">Calender:<span class="error">*</span></label
+          ><br />
+
+          <div
+            class="error"
+            [ngClass]="
+              (normalform.get('calender').invalid &&
+                normalform.get('calender').touched) ||
+              (isformvalid && normalform.get('calender').invalid)
+                ? 'red-box1'
+                : ''
+            "
+          >
+            <p-calendar
+              formControlName="calender"
+              placeholder="MM/DD/YYYY"
+              [showIcon]="true"
+              inputId="icon"
+            ></p-calendar>
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              (normalform.get('calender')?.invalid &&
+                normalform.get('calender')?.touched) ||
+              (normalform.get('calender')?.invalid && isformvalid)
+            "
+          >
+            Select calender
+          </div>
+        </div>
+        <!-- </div> -->
+        <br />
+        <label>Please select Role that your looking for:</label>
+        <br/>
+        <div class="row" >
+          <div class="d-flex col-4">
+            <label>Developer:</label>
+            <input  formControlName="Role"
+             type="checkbox"(click)="togglea()">
+
+          </div>
+          <div class="d-flex col-4">
+            <label>QA:</label>
+            <input formControlName="Role"
+           type="checkbox"(click)="toggleb()">
+            </div>
+            <div class="d-flex col-4">
+              <label>Support:</label>
+              <input formControlName="Role"
+             type="checkbox"(click)="togglec()">
+            </div>
+        </div>
+        <div>
+          <br/>
+<div >
+  <div *ngIf="isVisiblea">
+    Developer
+  </div>
+
+    <div *ngIf="isVisibleb">
+      QA
+    </div>
+
+    <div *ngIf="isVisiblec">
+      Support
+    </div>
+</div>
+<div
+class="error"
+*ngIf="
+  (normalform.get('Role')?.invalid &&
+    normalform.get('Role')?.touched) ||
+  (normalform.get('Role')?.invalid && isformvalid)
+"
+>
+Please enter Role
+</div>
+<br/>
+          </div>
+
+        <!-- ------------------------------------ -->
+<div>
+  <label for="w3review">Address:<span class="error">*</span></label
+    ><br />
+    <div class="row">
+
+      <div class="col-md-6">
+        <input
+          type="radio"
+          name="addadress"
+          formControlName="addadress"
+          class="radio-btn"
+          value="yes"
+        />
+        <label class="text-bold label-name">Yes</label>
+      </div>
+      <div class="col-md-6">
+        <input
+          type="radio"
+          name="addadress"
+          formControlName="addadress"
+          class="radio-btn"
+          value="no"
+
+        />
+        <label class="text-bold label-name">No</label>
+      </div>
+    </div>
+</div>
+<div *ngIf="normalform.get('addadress')?.value == 'yes'">
+  <input
+    type="text"
+    class="form-control"
+    formControlName="adress"
+    placeholder="Enter Address"
+    [ngClass]="
+      (isformvalid && normalform.get('adress')?.invalid) ||
+      (normalform.get('adress')?.invalid &&
+        normalform.get('adress')?.touched)
+        ? 'red-box'
+        : ''
+    "
+  />
+</div>
+<div
+class="error"
+*ngIf="
+  (normalform.get('adress')?.invalid &&
+    normalform.get('adress')?.touched) ||
+  (normalform.get('adress')?.invalid && isformvalid)
+"
+>
+Please enter adress
+</div>
+
+        <br />
+      </form>
+      <button class="btn btn-primary mt-2" (click)="submitform()">
+        submit
+      </button>
+    </div>
+  </div>
+</div>

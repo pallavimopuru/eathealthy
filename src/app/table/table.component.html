@@ -1,0 +1,311 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-9">
+      <p>table works!</p>
+      <div class="space-between">
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary my-3"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="addDetails()"
+          >
+            Add details of employee
+          </button>
+        </div>
+        <div>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="Global Search"
+            />
+          </span>
+        </div>
+      </div>
+      <form>
+        <!-- <fieldset class="border p-2">
+           <legend  class="float-none w-auto p-2">Your Legend</legend>
+           <input type="text">
+        </fieldset> -->
+      </form>
+      <table style="width: 100%">
+        <tr style="background-color: #aeb0b5">
+          <th style="min-width: 11rem">
+              Name<i
+              class="pi pi-sort-alt cursor"
+              style="font-size: 1rem"
+              (click)="sortData('name')"
+            ></i>
+          </th>
+          <th style="min-width: 11rem">
+             Title<i
+              class="pi pi-sort-alt cursor"
+              style="font-size: 1rem"
+              (click)="sortData('title')"
+            ></i>
+          </th>
+          <th style="min-width: 11rem">
+             Status<i
+              class="pi pi-sort-alt cursor"
+              style="font-size: 1rem"
+              (click)="sortData('status')"
+            ></i>
+          </th>
+          <th style="min-width: 11rem">
+             Position<i
+              class="pi pi-sort-alt cursor"
+              style="font-size: 1rem"
+              (click)="sortData('position')"
+            ></i>
+          </th>
+          <th style="min-width: 11rem">Actions</th>
+        </tr>
+<tr>
+  <th>
+    <input
+    pInputText
+    type="text"
+    [(ngModel)]="nameSearchTerm"
+    placeholder="Name Search"
+  />
+  </th>
+  <th>
+    <input
+    pInputText
+    [(ngModel)]="titleSearchTerm"
+    type="text"
+    placeholder="Title Search"
+  />
+  </th>
+  <th >
+    <input
+    pInputText
+    type="text"
+    [(ngModel)]="statusSearchTerm"
+    placeholder="Status Search"
+  />
+  </th>
+  <th >
+    <input
+    pInputText
+    type="text"
+    [(ngModel)]="positionSearchTerm"
+    placeholder="Position Search"
+
+  />
+  </th>
+</tr>
+        <tr
+          *ngFor="
+            let item of filterData()
+              | paginate : { itemsPerPage: 2, currentPage: page };
+            let i = index
+          "
+        >
+          <td>
+            <span>{{ item.name }} </span>
+          </td>
+          <td>
+            <span>{{ item.title }}</span>
+          </td>
+          <td>
+            <span>{{ item.status }}</span>
+          </td>
+          <td>
+            <span>{{ item.position }}</span>
+          </td>
+          <td>
+            <div>
+              <button
+                (click)="editRow(i)"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Edit
+              </button>
+              <button (click)="deleteRow(i)">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <div></div>
+        </tr>
+      </table>
+      <br />
+      <div class="flex-end">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+      </div>
+
+      <!-- Add more cells here as needed -->
+      <div *ngIf="isActive"></div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="">
+          <h4 class="text-center mt-4">Please fill the below fileds</h4>
+          <div class="align-end m-2">
+            <button type="button" class="align-end" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="container">
+            <form [formGroup]="tableform">
+              <div class="row my-3">
+                <div class="col-md-4 my-2">
+                  <div class="field">
+                    <label class="label-name">Name</label><br />
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="name"
+                      pInputText
+                      [ngClass]="
+                        (isformvalid && tableform.get('name').invalid) ||
+                        (tableform.get('name').invalid &&
+                          tableform.get('name').touched)
+                          ? 'red-box'
+                          : ''
+                      "
+                    />
+                    <div
+                      class="error"
+                      *ngIf="
+                        (tableform.get('name').invalid &&
+                          tableform.get('name').touched) ||
+                        (isformvalid &&
+                          tableform.get('name').hasError('required'))
+                      "
+                    >
+                      Please enter name
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 my-2">
+                  <div class="field">
+                    <label class="label-name">Title</label><br />
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="title"
+                      pInputText
+                      [ngClass]="
+                        (isformvalid && tableform.get('title').invalid) ||
+                        (tableform.get('title').invalid &&
+                          tableform.get('title').touched)
+                          ? 'red-box'
+                          : ''
+                      "
+                    />
+                    <div
+                      class="error"
+                      *ngIf="
+                        (tableform.get('title').invalid &&
+                          tableform.get('title').touched) ||
+                        (isformvalid &&
+                          tableform.get('title').hasError('required'))
+                      "
+                    >
+                      Please enter title
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 my-2">
+                  <div class="field">
+                    <label class="label-name">Status</label><br />
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="status"
+                      pInputText
+                      [ngClass]="
+                        (isformvalid && tableform.get('status').invalid) ||
+                        (tableform.get('status').invalid &&
+                          tableform.get('status').touched)
+                          ? 'red-box'
+                          : ''
+                      "
+                    />
+                    <div
+                      class="error"
+                      *ngIf="
+                        (tableform.get('status').invalid &&
+                          tableform.get('status').touched) ||
+                        (isformvalid &&
+                          tableform.get('status').hasError('required'))
+                      "
+                    >
+                      Please enter status
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 my-2">
+                  <div class="field">
+                    <label class="label-name">Position</label><br />
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="position"
+                      pInputText
+                      [ngClass]="
+                        (isformvalid && tableform.get('position').invalid) ||
+                        (tableform.get('position').invalid &&
+                          tableform.get('position').touched)
+                          ? 'red-box'
+                          : ''
+                      "
+                    />
+                    <div
+                      class="error"
+                      *ngIf="
+                        (tableform.get('position').invalid &&
+                          tableform.get('position').touched) ||
+                        (isformvalid &&
+                          tableform.get('position').hasError('required'))
+                      "
+                    >
+                      Please enter position
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="align-end m-2">
+            <button
+              (click)="submittable()"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              [disabled]="!tableform.valid"
+            >
+              Update changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

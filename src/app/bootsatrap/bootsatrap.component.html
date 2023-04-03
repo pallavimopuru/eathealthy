@@ -1,0 +1,101 @@
+<p>bootsatrap works!</p>
+
+<div class="container-fluid py-3">
+  <h1>Angular Toastr</h1>
+
+  <div class="d-grid gap-2 col-4 mx-auto">
+    <button
+      type="button"
+      class="btn btn-sm btn-success"
+      (click)="showSuccess()"
+    >
+      Success
+    </button>
+    <button type="button" class="btn btn-sm btn-info" (click)="showInfo()">
+      Info
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-warning"
+      (click)="showWarning()"
+    >
+      Warning
+    </button>
+    <button type="button" class="btn btn-sm btn-danger" (click)="showError()">
+      Error
+    </button>
+  </div>
+  <br />
+  <div class="d-grid gap-2 col-4 mx-auto">
+    <form [formGroup]="booststrapform">
+      <div>
+        <label> email:<span class="error">*</span></label>
+        <input
+          type="email"
+          formControlName="email"
+          [ngClass]="
+            (isformvalid && booststrapform.get('email').invalid) ||
+            (booststrapform.get('email').touched &&
+              booststrapform.get('email').invalid)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (booststrapform.get('email').touched &&
+              booststrapform.get('email').invalid) ||
+            (isformvalid && booststrapform.get('email').hasError('required'))
+          "
+        >
+          Enter email
+        </div>
+        <div
+          class="error"
+          *ngIf="isformvalid && booststrapform.get('email').hasError('pattern')"
+        >
+          Enter valid Email
+        </div>
+      </div>
+      <!-- ----------------------------- -->
+      <div>
+        <label>Password <span class="error">*</span></label>
+        <input
+          type="password"
+          formControlName="password"
+          [ngClass]="
+            (isformvalid && booststrapform.get('password').invalid) ||
+            (booststrapform.get('password').touched &&
+              booststrapform.get('password').invalid)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div
+          class="error"
+          *ngIf="
+            (booststrapform.get('password').touched &&
+              booststrapform.get('password').invalid) ||
+            (isformvalid && booststrapform.get('password').hasError('required'))
+          "
+        >
+          Enter password
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            isformvalid && booststrapform.get('password').hasError('pattern')
+          "
+        >
+          Enter valid password(one special charecter@#$%%,one capital WERVF,one
+          small rtdfgfgd,one nmber12345)
+        </div>
+      </div>
+      {{ get() }}
+      <button type="submit" class="btn btn-primary" (click)="submitboostrap()">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
