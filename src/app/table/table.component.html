@@ -103,41 +103,35 @@
   />
   </th>
 </tr>
-        <tr
-          *ngFor="
-            let item of filterData()
-              | paginate : { itemsPerPage: 2, currentPage: page };
-            let i = index
-          "
+<ng-container >
+  <tr class="bg-color" *ngFor="let item of filterData() | paginate: { itemsPerPage: 2, currentPage: page }; let i = index;">
+    <td>
+      <span>{{ item.name }} </span>
+    </td>
+    <td>
+      <span>{{ item.title }}</span>
+    </td>
+    <td>
+      <span>{{ item.status }}</span>
+    </td>
+    <td>
+      <span>{{ item.position }}</span>
+    </td>
+    <td>
+      <div>
+        <button
+          (click)="editRow(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
-          <td>
-            <span>{{ item.name }} </span>
-          </td>
-          <td>
-            <span>{{ item.title }}</span>
-          </td>
-          <td>
-            <span>{{ item.status }}</span>
-          </td>
-          <td>
-            <span>{{ item.position }}</span>
-          </td>
-          <td>
-            <div>
-              <button
-                (click)="editRow(i)"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Edit
-              </button>
-              <button (click)="deleteRow(i)">Delete</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <div></div>
-        </tr>
+          Edit
+        </button>
+        <button (click)="deleteRow(i)">Delete</button>
+      </div>
+    </td>
+  </tr>
+
+</ng-container>
       </table>
       <br />
       <div class="flex-end">
@@ -286,6 +280,27 @@
                       "
                     >
                       Please enter position
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 my-2">
+                  <div class="field">
+                    <label class="label-name">color</label><br />
+
+                    <select [(ngModel)]="selectedcolor"  formControlName="color">
+                      <option value="">--select a color--</option>
+                      <option *ngFor="let color of colors" [value]="color.color">{{color.name}}</option>
+                    </select>
+                    <div
+                      class="error"
+                      *ngIf="
+                        (tableform.get('color').invalid &&
+                          tableform.get('color').touched) ||
+                        (isformvalid &&
+                          tableform.get('color').hasError('required'))
+                      "
+                    >
+                      Please enter color
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, ElementRef, Injectable, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -39,10 +39,11 @@ export class TableComponent implements OnInit {
   statusSearchTerm: string = '';
   positionSearchTerm: string = '';
   itemsPerPage: number = 10;
+  selectedcolor: string;
   constructor(
     private fb: FormBuilder,
     private toasterService: ToastrService,
-    private router: Router
+    private router: Router,private elRef: ElementRef, private renderer: Renderer2
   ) {}
 
   updateRow(i: number) {
@@ -57,6 +58,7 @@ export class TableComponent implements OnInit {
       title: this.formDataArr[i].title,
       status: this.formDataArr[i].status,
       position: this.formDataArr[i].position,
+      color:this.formDataArr[i].color
     };
     // Update the form with the data of the row being edited
     this.tableform.setValue(data);
@@ -77,6 +79,7 @@ export class TableComponent implements OnInit {
       title: ['', [Validators.required]],
       status: ['', [Validators.required]],
       position: ['', [Validators.required]],
+      color:['',[Validators.required]]
     });
   }
 
@@ -94,8 +97,7 @@ export class TableComponent implements OnInit {
       if (this.editRowIndex !== null) {
         // check if editing an existing row
         const previousFormData = this.formDataArr[this.editRowIndex];
-        isFormDataUpdated =
-          JSON.stringify(formData) !== JSON.stringify(previousFormData);
+        isFormDataUpdated = JSON.stringify(formData) !== JSON.stringify(previousFormData);
         this.formDataArr[this.editRowIndex] = formData; // update existing data
         this.editRowIndex = null; // reset editRowIndex
       } else {
@@ -105,10 +107,9 @@ export class TableComponent implements OnInit {
       // Store updated form data array in sessionStorage
       sessionStorage.setItem('formdata', JSON.stringify(this.formDataArr));
       // Update formDataArr2 with the latest data from sessionStorage
-      this.formDataArr2 = JSON.parse(
-        sessionStorage.getItem('formdata') || '[]'
-      );
+      this.formDataArr2 = JSON.parse(sessionStorage.getItem('formdata') || '[]');
       console.log('formDataArr2', this.formDataArr2);
+
 
       // Display toaster message only if form data is updated
       if (isFormDataUpdated) {
@@ -120,20 +121,11 @@ export class TableComponent implements OnInit {
   }
 
 
+
+
   filterData() {
     return this.formDataArr2.filter(item => {
-      // if (this.nameSearchTerm && !item.name.toLowerCase().includes(this.nameSearchTerm.toLowerCase())) {
-      //   return false;
-      // }
-      // if (this.titleSearchTerm && !item.title.toLowerCase().includes(this.titleSearchTerm.toLowerCase())) {
-      //   return false;
-      // }
-      // if (this.statusSearchTerm && !item.status.toLowerCase().includes(this.statusSearchTerm.toLowerCase())) {
-      //   return false;
-      // }
-      // if (this.positionSearchTerm && !item.position.toLowerCase().includes(this.positionSearchTerm.toLowerCase())) {
-      //   return false;
-      // }
+
       if (this.searchTerm && (
         !item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
         !item.title.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
@@ -162,10 +154,8 @@ export class TableComponent implements OnInit {
       }
       return true;
     });
+
   }
-
-
-
 
   sortData(columnName: string) {
     this.formDataArr2.sort((a, b) => {
@@ -195,10 +185,25 @@ export class TableComponent implements OnInit {
   get() {
     return sessionStorage.getItem('formdata');
   }
+  rowcolors: string[] = new Array(this.filterData().length).fill('#aeb0b5');
+
+  colors = [
+    { name: 'Red', color: '#ff0000' },
+    { name: 'Blue', color: '#0000ff' },
+    { name: 'Green', color: '#00ff00' },
+    { name: 'Pink', color: '#ffc0cb' },
+  ];
+  changerowcolor(i: number) {
+    console.log('Selected color:', this.selectedcolor);
+    const element = this.elRef.nativeElement.querySelector(`#row-${i}`);
+    element.classList.add('bg-color');
+    this.rowcolors[i] = this.selectedcolor;
+  }
+
   ngOnInit() {
     this.tableformdata();
+    this.tableform = new FormGroup({
+      color: new FormControl('')
+    });
   }
-}
-function elseif(arg0: boolean) {
-  throw new Error('Function not implemented.');
 }
