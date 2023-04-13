@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NormalComponent } from './normal/normal.component';
 import { TableComponent } from './table/table.component';
 import { TablechangesComponent } from './tablechanges/tablechanges.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'table', component: TableComponent},
   { path: 'tablechanges', component: TablechangesComponent},
+  {path:'chart',component:ChartComponent}
 
 ];
 
