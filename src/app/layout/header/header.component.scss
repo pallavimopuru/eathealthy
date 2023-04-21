@@ -35,3 +35,47 @@ nav ul li a{
 .text-align-center{
   text-align: center;
 }
+// -----------------
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: left 0.5s ease;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu-items li {
+  padding: 0 1rem;
+}
+
+.menu-items li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.submenu-items{
+  border: 1px solid #cfc5c5;
+  position: absolute;
+  width: 100%;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 2;
+  background-color: white;
+  padding: 10px;
+  color: black;
+
+}

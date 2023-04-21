@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,9 @@ export class LoginComponent implements OnInit{
   formGroup: any;
   isformvalid: boolean;
 
-  constructor(private router: Router, fb: FormBuilder) {
+  constructor(private router: Router, fb: FormBuilder,private http: HttpClient,private authService: AuthService) {
+    // const token = this.authService.getToken();
+    // this.authService.logout();
 
     // password
      /**
@@ -79,6 +84,8 @@ export class LoginComponent implements OnInit{
     if(this.loginform.valid){
       this.isformvalid=false;
       this.router.navigateByUrl('/contact');
+      sessionStorage.setItem("token","hari");
+      localStorage.setItem('token','pallavi');
     }
     else{
       this.isformvalid = true;
@@ -89,6 +96,26 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
 
+  }
+  login(username: string, password: string) {
+    return this.http.post<any>('/api/authenticate', { username: username, password: password })
+      .pipe(map(response => {
+        // login successful if there's a jwt token in the response
+        if (response && response.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(response));
+        }
+        return response;
+      }));
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+  }
+  getToken() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser ? currentUser.token : '';
   }
 
 }

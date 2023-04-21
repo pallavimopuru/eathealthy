@@ -47,6 +47,7 @@ import { TablechangesComponent } from './tablechanges/tablechanges.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { ChartComponent } from './chart/chart.component';
 import { ChartModule } from 'primeng/chart';
+import { AuthGuard } from './auth.guard';
 @NgModule({
     declarations: [
         AppComponent,

@@ -19,35 +19,32 @@ import { NormalComponent } from './normal/normal.component';
 import { TableComponent } from './table/table.component';
 import { TablechangesComponent } from './tablechanges/tablechanges.component';
 import { ChartComponent } from './chart/chart.component';
-
-
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-
-{path:'',component:SigninComponent},
-  { path: 'home', component: HomeComponent },
-  { path: 'feedback', component: FeedbackComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'signin', component: SigninComponent },
-  { path: 'helpp', component: HelppComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'offers', component: OffersComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'aboutus', component: AboutusComponent },
-  { path: 'employeelist', component: EmployeelistComponent },
-  { path: 'Caluclator', component: CaluclatorComponent },
-  { path: 'bootsatrap', component: BootsatrapComponent },
-  { path: 'normal', component: NormalComponent },
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'table', component: TableComponent},
-  { path: 'tablechanges', component: TablechangesComponent},
-  {path:'chart',component:ChartComponent}
-
+  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
+  { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
+  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+  { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
+  { path: 'helpp', component: HelppComponent, canActivate: [AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  { path: 'offers', component: OffersComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'aboutus', component: AboutusComponent, canActivate: [AuthGuard] },
+  { path: 'employeelist', component: EmployeelistComponent, canActivate: [AuthGuard] },
+  { path: 'Caluclator', component: CaluclatorComponent, canActivate: [AuthGuard] },
+  { path: 'bootsatrap', component: BootsatrapComponent, canActivate: [AuthGuard] },
+  { path: 'normal', component: NormalComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'tablechanges', component: TablechangesComponent, canActivate: [AuthGuard] },
+  { path: 'chart', component: ChartComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
