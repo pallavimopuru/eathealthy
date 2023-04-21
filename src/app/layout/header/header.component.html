@@ -5,6 +5,19 @@
       Healthy</a
     >
     <nav>
+
+      <i class="pi pi-align-justify d-sm-block d-md-none" (click)="togglemenu()"></i>
+      <ng-container *ngIf="showmenu">
+        <div style=" width: 100%;">
+          <div class="submenu-items">
+            <i class="pi pi-times align-end" (click)="togglemenu()"></i>
+<p>jkkj</p>
+<p>jgjjk</p>
+
+          </div>
+
+        </div>
+      </ng-container>
       <ul class="d-flex nav-names">
         <li>
           <a class="nav-items" href="/search">Search</a>
@@ -40,6 +53,9 @@
 
             </div>
           </ng-container>
+        </li>
+        <li>
+          <button class="btn btn-outline-primary" (click)="logout()"><a href="/signin">logout</a></button>
         </li>
       </ul>
     </nav>

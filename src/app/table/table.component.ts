@@ -113,15 +113,13 @@ export class TableComponent implements OnInit {
 
       // Display toaster message only if form data is updated
       if (isFormDataUpdated) {
+
         this.toasterService.success('Details of employee updated', ' Success!');
       }
     } else {
       this.toasterService.error('Please Enter All Fields!', 'Title Error!');
     }
   }
-
-
-
 
   filterData() {
     return this.formDataArr2.filter(item => {
@@ -196,14 +194,13 @@ export class TableComponent implements OnInit {
   changerowcolor(i: number) {
     console.log('Selected color:', this.selectedcolor);
     const element = this.elRef.nativeElement.querySelector(`#row-${i}`);
-    element.classList.add('bg-color');
+    element.classList.add('my_class2');
     this.rowcolors[i] = this.selectedcolor;
+    // Set the color property of the corresponding item in filterData() array
+    this.filterData()[i].color = this.selectedcolor;
   }
-
   ngOnInit() {
     this.tableformdata();
-    this.tableform = new FormGroup({
-      color: new FormControl('')
-    });
+
   }
 }
