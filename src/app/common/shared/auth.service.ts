@@ -5,5 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  constructor() { }
+
+  private username: string; // declare a property
+
+  constructor() { }// assign authService to authService property
+
+
 }

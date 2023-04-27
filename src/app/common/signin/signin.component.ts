@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-signin',
@@ -15,8 +15,17 @@ export class SigninComponent implements OnInit {
   formGroup: any;
   isformvalid: boolean;
   displayToastError: any;
+  username: string;
+  // register: any [] = [];
+  register = [];
+  toasterservice: any;
+  constructor(
+    private router: Router,
+    fb: FormBuilder,
 
-  constructor(private router: Router, fb: FormBuilder,private toastr: ToastrService) {
+  ) {
+    this.username = sessionStorage.getItem('username')!;
+
     // password
     /**
      * (?=.*\d)         should contain at least 1 digit
@@ -25,23 +34,11 @@ export class SigninComponent implements OnInit {
      * (?!.*\s)         should not contain any blank space
      */
 
+    //  this.register = JSON.parse(sessionStorage.getItem("register")!)!;
+
     this.sigininform = fb.group({
-      firstName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(10),
-        ],
-      ],
-      lastName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
-        ],
-      ],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       phonenumber: [
         '',
         [
@@ -52,10 +49,9 @@ export class SigninComponent implements OnInit {
       email: [
         '',
         [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(10),
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+          Validators.nullValidator,
+
+          // Validators.pattern('/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/'),
         ],
       ],
       password: [
@@ -76,25 +72,27 @@ export class SigninComponent implements OnInit {
       // ],
     });
   }
-
-
   get f() {
     return this.sigininform.controls;
   }
-  callingFunction() {
-    this.submitted=true;
-    console.log('loginform',this.sigininform);
-    if(this.sigininform.valid){
-      this.isformvalid=false;
-      this.router.navigateByUrl('/login');
-    }
-    else{
+
+  Onsubmitsignin() {
+    this.submitted = true;
+    console.log('loginform', this.sigininform);
+    if (this.sigininform.valid) {
+      const obj = this.sigininform.value;
+      this.register.push(obj);
+      sessionStorage.setItem('register', JSON.stringify(this.register));
+      sessionStorage.setItem('token', 'pallu');
+      this.isformvalid = false;
+      // //this.toasterService.success('register', ' Success!');
+      this.router.navigateByUrl('/aboutus');
+    } else {
       this.isformvalid = true;
-       alert('please enter fileds');
+      alert('please enter fileds');
+      //this.toasterService.error('Please Enter all fileds','Error!')
     }
   }
 
   ngOnInit(): void {}
 }
-
-

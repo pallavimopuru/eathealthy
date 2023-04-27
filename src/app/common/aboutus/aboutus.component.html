@@ -1,11 +1,11 @@
 <app-header></app-header>
-<div class="">
-  <div class="row mt-4">
+<div class="container min-height-desktop">
+  <div class="row">
     <div class="col-md-2">
       <app-sidebar></app-sidebar>
     </div>
     <div class="col-md-10">
-      <button (click)="toggle()" id="bt" class="btn btn-primary">
+      <button (click)="toggle()" id="bt" class="btn blue-btn">
         {{ buttonName }}
       </button>
 
@@ -36,7 +36,7 @@
               </div>
             </div>
           </div>
-          <div class="btn btn-primary"  (click)="aboutsubmit()">Submit</div>
+          <div class="btn blue-btn"  (click)="aboutsubmit()">Submit</div>
         </div>
       </ng-container>
     </div>

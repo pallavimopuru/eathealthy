@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-normal',
@@ -29,7 +29,7 @@ export class NormalComponent implements OnInit {
   // }
   constructor(
     private fb: FormBuilder,
-    private toasterService: ToastrService,
+  ,
     private router: Router
   ) {}
 
@@ -100,12 +100,12 @@ export class NormalComponent implements OnInit {
       var value = JSON.stringify(this.normalform.value);
       sessionStorage.setItem('formdata', value);
       localStorage.setItem('formdata', value);
-      this.toasterService.success('Message service!', 'Title Success!');
+      //this.toasterService.success('Message service!', 'Title Success!');
       this.router.navigateByUrl('/dashboard');
     } else {
       // If the form is not valid
       this.isformvalid = true;
-      this.toasterService.error('Please Enter All Fields!', 'Title Error!');
+      //this.toasterService.error('Please Enter All Fields!', 'Title Error!');
     }
   }
 

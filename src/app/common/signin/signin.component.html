@@ -1,26 +1,14 @@
-<div class="container-fluid bg-ghost-white">
-  <div class="space-between">
-    <div>
-      <a href="#" routerLink="/" class="logo eat-healthy-heading"
-        ><img src="../../../assets/food.jfif" width="40px;" height="40px;" />Eat
-        Healthy</a
-      >
+<app-header></app-header>
+<div class="container min-height-desktop my-5">
+  <div class="col-md-6 mx-auto bg-form box-shadow">
+    <div class="text-center">
+      <h1 class="heading-name">Siginup for your account</h1>
     </div>
-    <!-- <div>
-      <button class="btn btn-outline-primary">
-        <a href="/login"><i class="bi bi-box-arrow-right"></i>login</a>
-      </button>
-    </div> -->
-  </div>
-</div>
-<div class="container-fluid bg-ghost-white my-4 bodycontent">
-  <div class="container bg-white py-3 contact-border franch">
-    <div class="col-md-12 text-center">
       <form [formGroup]="sigininform">
-        <h3>Siginup for your account</h3>
+
 
         <label>
-          First Name:<span class="error">*</span>
+          First Name:<span class="error">*</span></label>
           <input
             type="text"
             class="form-control"
@@ -54,10 +42,10 @@
           >
             Enter minumun 5 letters first Name
           </div>
-        </label>
+
         <br />
         <label>
-          Last Name:
+          Last Name:</label>
           <input
             type="text"
             class="form-control"
@@ -92,15 +80,21 @@
           >
             Enter minumun 5 letters Last Name
           </div>
-        </label>
         <br />
         <label>
-          Email:<span class="error">*</span>
+          Email:<span class="error">*</span></label>
           <input
             type="email"
             class="form-control"
             formControlName="email"
-            [ngClass]="(isformvalid && sigininform.get('email').invalid )|| (sigininform.get('email').touched && sigininform.get('email').invalid ) ? 'red-box':''"
+            [ngClass]="
+            (isformvalid &&
+            sigininform.get('email').invalid )||
+
+            ( sigininform.get('email').touched && sigininform.get('email').invalid)
+              ? 'red-box'
+              : ''
+          "
 
           />
           <div
@@ -128,10 +122,9 @@
     Email is a required field!
 
   </p> -->
-        </label>
         <br />
         <label>
-          Phone Number:<span class="error">*</span>
+          Phone Number:<span class="error">*</span></label>
           <input
             type="phonenumber"
             class="form-control"
@@ -157,11 +150,10 @@
           >
             Enter valid phonenumber
           </div>
-        </label>
 
         <br />
         <label>
-          Password:<span class="error">*</span>
+          Password:<span class="error">*</span></label>
           <input
             type="text"
             class="form-control"
@@ -190,7 +182,6 @@
           >
             Enter valid password
           </div>
-        </label>
         <br />
         <!-- <label>
           Confirm Password:<span class="error">*</span>
@@ -226,15 +217,19 @@
         <p>Already a member? &nbsp;<a href="/login">login </a></p>
 
         <br />
-        <button
+        <div class="text-center">
+          <button
           type="button"
-          class="btn btn-primary mt-2"
-          (click)="callingFunction()"
+          class="btn blue-btn mt-2"
+          (click)="Onsubmitsignin()"
 
         >
           Submit signin
         </button>
+        </div>
+
       </form>
     </div>
   </div>
-</div>
+
+<app-footer></app-footer>
