@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeService } from 'src/app/common/employe.service';
 import { AuthService } from 'src/app/common/shared/auth.service';
 
@@ -10,19 +11,17 @@ import { AuthService } from 'src/app/common/shared/auth.service';
 export class HeaderComponent implements OnInit {
   showmenu:boolean=false;
   show: boolean = false;
-  buttonName: any = 'Cart';
+  // buttonName: any = 'Cart';
   public groups: any[] = [];
   navigateByurl: any;
-  toggle() {
-    this.show = !this.show;
+  username: string;
+  type: string;
 
-    // Change the name of the button.
-    if (this.show)
-     this.buttonName = 'Hide cart';
-    else
-    this.buttonName = 'Show cart';
+  constructor( private _employeservice: EmployeService,private authService: AuthService,public router :Router){
+   this.username =  sessionStorage.getItem('username')!;
+   console.log('router',this.router);
   }
-  constructor( private _employeservice: EmployeService,private authService: AuthService){}
+
   ngOnInit() {
     this.groups = this._employeservice.groups();
     console.log('groups',this.groups);

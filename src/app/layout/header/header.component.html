@@ -1,63 +1,124 @@
-<header>
-  <div class="container">
-    <a href="/contact" class="logo eat-healthy-heading"
-      ><img src="../../../assets/food.jfif" width="40px;" height="40px;" />Eat
-      Healthy</a
-    >
-    <nav>
+<div
+  *ngIf="
+    router.url.indexOf('login') == -1 || router.url.indexOf('signin') == -1
+  "
+>
+  <header class="container-fluid header-eathealthy box-shadow">
+    <div class="container space-between">
+      <div>
+        <a href="#" routerLink="/" class="logo eat-healthy-heading"
+          >Eat Healthy</a
+        >
+      </div>
+      <div>
+        <ul class="d-flex nav-names">
+          <li>
+            <img
+              src="../../../assets/login-icon.png"
+              class="img-fluid login-icon"
+            />&nbsp; <a class="nav-items">{{ username }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+<div
+  *ngIf="
+    router.url.indexOf('table') != -1 ||
+    router.url.indexOf('feedback') != -1 ||
+    router.url.indexOf('aboutus') != -1
+  "
+>
+  <header class="container-fluid header-eathealthy box-shadow">
+    <div class="container space-between">
+      <div class="flex-align-center">
+        <a href="/contact" class="logo eat-healthy-heading">Eat Healthy</a>
+      </div>
+      <div class="d-sm-block d-md-none flex-align-center">
+        <i
+          class="pi pi-align-justify mobile-menu-icon"
+          (click)="togglemenu()"
+        ></i>
+        <ng-container *ngIf="showmenu">
+          <div style="width: 100%">
+            <div class="submenu-items">
+              <i class="pi pi-times align-end" (click)="togglemenu()"></i>
+              <ul class="mobile-menu-list">
+                <li>
+                  <img
+                    src="../../../assets/login-icon.png"
+                    class="img-fluid login-icon"
+                  />&nbsp; <a class="nav-items">{{ username }}</a>
+                </li>
+                <li>
+                  <a class="nav-items" href="/table">Dashboard</a>
+                </li>
 
-      <i class="pi pi-align-justify d-sm-block d-md-none" (click)="togglemenu()"></i>
-      <ng-container *ngIf="showmenu">
-        <div style=" width: 100%;">
-          <div class="submenu-items">
-            <i class="pi pi-times align-end" (click)="togglemenu()"></i>
-<p>jkkj</p>
-<p>jgjjk</p>
+                <li>
+                  <a class="nav-items" href="/aboutus">About us</a>
+                </li>
 
-          </div>
+                <li>
+                  <a class="nav-items" href="/feedback">Feedback</a>
+                </li>
+                <!--
+                  <li>
 
-        </div>
-      </ng-container>
-      <ul class="d-flex nav-names">
-        <li>
-          <a class="nav-items" href="/search">Search</a>
-        </li>
-        <li>
-          <a class="nav-items" href="/offers">Offers</a>
-        </li>
-        <!-- <li>
-          <a  class="nav-items" href="/helpp">Help</a>
-        </li> -->
-        <li>
-          <a class="nav-items" href="/aboutus">About us</a>
-        </li>
-        <li>
-          <a class="nav-items" href="/signin">Signin</a>
-        </li>
-        <li>
-          <a class="nav-items" href="/feedback">Feedback</a>
-        </li>
-        <li>
-          <a class="nav-items"
-            ><button (click)="toggle()" class="btn btn-primary" id="bt">
-              {{ buttonName }}
-            </button></a
-          >
-          <ng-container *ngIf="show">
-            <div style="margin: 0 auto; text-align: left">
-              <div class="cart-items">
-                <div class="text-align-center" *ngFor="let group of groups">
-                  {{ group.name }}
-                </div>
-              </div>
-
+                    <button class="btn btn-outline-primary" (click)="logout()"><a href="/signin">logout</a></button>
+                  </li> -->
+              </ul>
             </div>
-          </ng-container>
-        </li>
-        <li>
-          <button class="btn btn-outline-primary" (click)="logout()"><a href="/signin">logout</a></button>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+          </div>
+        </ng-container>
+      </div>
+      <div class="mobile-none flex-align-center">
+        <ul class="d-flex nav-names">
+          <li>
+            <a class="nav-items" href="/table">Dashboard</a>
+          </li>
+
+          <!-- <li>
+              <a  class="nav-items" href="/helpp">Help</a>
+            </li> -->
+          <li>
+            <a class="nav-items" href="/aboutus">About us</a>
+          </li>
+
+          <li>
+            <a class="nav-items" href="/feedback">Feedback</a>
+          </li>
+          <!-- <li>
+              <a class="nav-items"
+                ><button (click)="toggle()" class="btn blue-btn" id="bt">
+                  {{ buttonName }}
+                </button></a
+              >
+              <ng-container *ngIf="show">
+                <div style="margin: 0 auto; text-align: left">
+                  <div class="cart-items">
+                    <div class="text-align-center" *ngFor="let group of groups">
+                      {{ group.name }}
+                    </div>
+                  </div>
+
+                </div>
+              </ng-container>
+            </li> -->
+
+          <li>
+            <img
+              src="../../../assets/login-icon.png"
+              class="img-fluid login-icon"
+            />&nbsp; <a class="nav-items">{{ username }}</a>
+          </li>
+
+          <!-- <li>
+
+              <button class="btn btn-outline-primary" (click)="logout()"><a href="/signin">logout</a></button>
+            </li> -->
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>

@@ -14,15 +14,15 @@ import { LoginComponent } from './common/login/login.component';
 import { OffersComponent } from './common/offers/offers.component';
 import { SearchComponent } from './common/search/search.component';
 import { SigninComponent } from './common/signin/signin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NormalComponent } from './normal/normal.component';
 import { TableComponent } from './table/table.component';
 import { TablechangesComponent } from './tablechanges/tablechanges.component';
 import { ChartComponent } from './chart/chart.component';
 import { AuthGuard } from './auth.guard';
+import { ForgotpasswordComponent } from './common/forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
   { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
@@ -37,10 +37,10 @@ const routes: Routes = [
   { path: 'Caluclator', component: CaluclatorComponent, canActivate: [AuthGuard] },
   { path: 'bootsatrap', component: BootsatrapComponent, canActivate: [AuthGuard] },
   { path: 'normal', component: NormalComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
   { path: 'tablechanges', component: TablechangesComponent, canActivate: [AuthGuard] },
   { path: 'chart', component: ChartComponent, canActivate: [AuthGuard] },
+  {path:'forgotpassword',component:ForgotpasswordComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

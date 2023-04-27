@@ -1,6 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 import { Component, ElementRef, Injectable, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
@@ -42,7 +42,7 @@ export class TableComponent implements OnInit {
   selectedcolor: string;
   constructor(
     private fb: FormBuilder,
-    private toasterService: ToastrService,
+  ,
     private router: Router,private elRef: ElementRef, private renderer: Renderer2
   ) {}
 
@@ -114,10 +114,10 @@ export class TableComponent implements OnInit {
       // Display toaster message only if form data is updated
       if (isFormDataUpdated) {
 
-        this.toasterService.success('Details of employee updated', ' Success!');
+        //this.toasterService.success('Details of employee updated', ' Success!');
       }
     } else {
-      this.toasterService.error('Please Enter All Fields!', 'Title Error!');
+      //this.toasterService.error('Please Enter All Fields!', 'Title Error!');
     }
   }
 
@@ -178,7 +178,7 @@ export class TableComponent implements OnInit {
     sessionStorage.setItem('formdata', JSON.stringify(this.formDataArr));
     // Update the formDataArr2 array used to display the table
     this.formDataArr2 = JSON.parse(sessionStorage.getItem('formdata') || '[]');
-    this.toasterService.success('Employee details deleted', ' Success!');
+    //this.toasterService.success('Employee details deleted', ' Success!');
   }
   get() {
     return sessionStorage.getItem('formdata');

@@ -1,26 +1,20 @@
-<div class="container-fluid bg-ghost-white">
-  <div class="space-between">
-    <div>
-      <a href="#" routerLink="/" class="logo eat-healthy-heading"
-        ><img src="../../../assets/food.jfif" width="40px;" height="40px;" />Eat
-        Healthy</a
-      >
-    </div>
-    <div>
-      <button class="btn btn-outline-primary">
-        <a href="/feedback"><i class="bi bi-box-arrow-right"></i>logout</a>
-      </button>
-    </div>
-  </div>
-</div>
-<div class="container-fluid bg-ghost-white my-4 bodycontent">
-  <div class="container bg-white py-3 contact-border franch">
-    <div class="col-md-12 text-center">
-      <form [formGroup]="loginform">
-        <h3 class="">Login for your account</h3>
+<app-header></app-header>
 
+<div class="container my-5">
+  <div class="align-end">
+<button (click)="downloadloginpdf()"  class="btn blue-btn mt-2">Download page</button>
+
+  </div>
+  <div class="col-md-6 mx-auto bg-form box-shadow">
+    <div class="text-center">
+      <h1 class="heading-name">Login for your account </h1>
+    </div>
+    <div class="align-end">
+<!-- <button (click)="downloadloginpage()" >Download page</button> -->
+    </div>
+      <form [formGroup]="loginform">
         <label>
-          User Name:<span class="error">*</span>
+          User Name:<span class="error">*</span></label>
           <input
             type="text"
             class="form-control"
@@ -53,117 +47,10 @@
           >
             Enter minumun 5 letters user Name
           </div>
-        </label>
+
         <br />
-        <!-- <label>
-          Last Name:<span class="error">*</span>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="lastName"
-            [ngClass]="
-              !isformvalid &&
-             loginform.get('lastName').invalid &&
-
-               loginform.get('lastName').touched || submitted
-                ? 'red-box'
-                : ''
-            "
-          />
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('lastName').touched &&
-             loginform.get('lastName').hasError('required') || submitted
-            "
-          >
-            Enter last Name
-          </div>
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('lastName').touched &&
-              !isformvalid &&
-             loginform.get('lastName').hasError('minlength')
-            "
-          >
-            Enter minumun 5 letters last Name
-          </div>
-        </label>
-        <br /> -->
-        <!-- <label>
-          phonenumber:<span class="error">*</span>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="phonenumber"
-            [ngClass]="
-              !isformvalid &&
-             loginform.get('phonenumber').invalid &&
-
-               loginform.get('phonenumber').touched || submitted
-                ? 'red-box'
-                : ''
-            "
-          />
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('phonenumber').touched &&
-             loginform.get('phonenumber').hasError('required') || submitted
-            "
-          >
-            Enter phonenumber
-          </div>
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('phonenumber').touched &&
-              !isformvalid &&
-             loginform.get('phonenumber').hasError('pattern')
-            "
-          >
-            Enter valid phonenumber
-          </div>
-        </label>
-        <br /> -->
-        <!-- <label>
-          Email<span class="error">*</span>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="email"
-            [ngClass]="
-              (!isformvalid &&
-             loginform.get('email').invalid &&
-
-               loginform.get('email').touched )|| submitted
-                ? 'red-box'
-                : ''
-            "
-          />
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('email').touched &&
-             loginform.get('email').hasError('required')
-            "
-          >
-            Enter email
-          </div>
-          <div
-            class="error"
-            *ngIf="
-             loginform.get('email').touched &&
-              !isformvalid &&
-             loginform.get('email').hasError('pattern')
-            "
-          >
-            Enter valid email
-          </div>
-        </label> -->
         <label>
-          Password:<span class="error">*</span>
+          Password:<span class="error">*</span></label>
           <input
             type="text"
             class="form-control"
@@ -195,18 +82,23 @@
           >
             Enter valid password(one special charecter@#$%%,one capital WERVF,one small rtdfgfgd,one nmber12345)
           </div>
-        </label>
+
         <br />
+        <p><a class="clickable-link" routerLink="/forgotpassword">Forgot Passoword </a></p>
         <p>Not a member? &nbsp;<a href="/signin">siginup </a></p>
-        <button
+        <div class="text-center">
+          <button
           type="submit"
-          class="btn btn-primary mt-2"
+          class="btn blue-btn mt-2"
           (click)="loginfunction()"
         >
           Submit login
         </button>
+        </div>
+
       </form>
+<!-- forget passoword code -->
 
     </div>
   </div>
-</div>
+<app-footer></app-footer>

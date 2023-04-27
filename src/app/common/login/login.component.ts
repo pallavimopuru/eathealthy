@@ -1,112 +1,121 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 
+import html2canvas from 'html2canvas';
+
+import * as html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   loginform: FormGroup;
   submitted: boolean = false;
   formGroup: any;
   isformvalid: boolean;
+  register = [];
+  //  myArray: number[] = [];
 
-  constructor(private router: Router, fb: FormBuilder,private http: HttpClient,private authService: AuthService) {
-    // const token = this.authService.getToken();
-    // this.authService.logout();
+  constructor(
+    private router: Router,
+    fb: FormBuilder,
+    private http: HttpClient,
+    private authService: AuthService,
 
-    // password
-     /**
-     * (?=.*\d)         should contain at least 1 digit
-     * (?=(.*\W){2})    should contain at least 2 special characters
-     * (?=.*[a-zA-Z])   should contain at least 1 alphabetic character
-     * (?!.*\s)         should not contain any blank space
-     */
-
+  ) {
     this.loginform = fb.group({
-      userName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(10),
-        ],
-      ],
-      // lastName: [
-      //   '',
-      //   [
-      //     Validators.required,
-      //     Validators.minLength(3),
-      //     Validators.maxLength(30),
-      //   ],
-      // ],
-      // phonenumber: [
-      //   '',
-      //   [
-      //     Validators.required,
-      //     Validators.pattern('^(\\+?d{1,4}[s-])?(?!0+s+,?$)\\d{10}s*,?$'),
-      //   ],
-      // ],
-      // email: [
-      //   '',
-      //   [
-      //     Validators.required,
-      //     Validators.minLength(3),
-      //     Validators.maxLength(10),
-      //     Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
-      //   ],
-      // ],
+      userName: ['', [Validators.required]],
+
       password: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/),
+          Validators.pattern(
+            /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
+          ),
         ],
       ],
-
     });
+  }
 
+  // downloadloginpage(){
+  //   html2canvas(document.body).then(canvas=>{
+  //     const link=document.createElement('a');
+  //     link.download='page.pdf';
+  //     link.href=canvas.toDataURL();
+  //     link.click();
+  //   });
+  // }
+
+  // downloadloginpdf() {
+  //   const options = {
+  //     filename: 'page.pdf',
+  //     image: { type: 'jpeg', quality: 0.98 },
+  //     html2canvas: { scale: 2 },
+  //     jsPDF: { unit: 'in', format: 'letter', orientation: 'potrait' }
+  //   };
+  //   html2pdf().set(options).from(document.body).save();
+  // }
+
+  downloadloginpdf() {
+    const options = {
+      filename: 'page.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(options).from(document.body).save();
   }
 
   get f() {
     return this.loginform.controls;
   }
-
+  //  getusername(){
+  //  return sessionStorage.getItem('username');
+  //  }
   loginfunction() {
-    this.submitted=true;
-    console.log('loginform',this.loginform);
-    if(this.loginform.valid){
-      this.isformvalid=false;
-      this.router.navigateByUrl('/contact');
-      sessionStorage.setItem("token","hari");
-      localStorage.setItem('token','pallavi');
-    }
-    else{
+    this.submitted = true;
+    console.log('loginform', this.loginform);
+    if (this.loginform.valid) {
+      this.isformvalid = false;
+      const obj = this.loginform.value;
+
+      this.register.push(obj);
+      sessionStorage.setItem('register', JSON.stringify(this.register));
+      sessionStorage.setItem('username', this.loginform.value.userName);
+      sessionStorage.setItem('token', 'hari');
+      //this.toasterService.success('Login', ' Success!');
+      this.router.navigateByUrl('/signin');
+    } else {
       this.isformvalid = true;
-      alert('please fill manditory fields');
-
+      alert('please fill mandatory fields');
+      //this.toasterService.error('please fill all Login fields ', 'Error!');
     }
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   login(username: string, password: string) {
-    return this.http.post<any>('/api/authenticate', { username: username, password: password })
-      .pipe(map(response => {
-        // login successful if there's a jwt token in the response
-        if (response && response.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(response));
-        }
-        return response;
-      }));
+    return this.http
+      .post<any>('/api/authenticate', {
+        username: username,
+        password: password,
+      })
+      .pipe(
+        map((response) => {
+          // login successful if there's a jwt token in the response
+          if (response && response.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(response));
+          }
+          return response;
+        })
+      );
   }
 
   logout() {
@@ -117,5 +126,4 @@ export class LoginComponent implements OnInit{
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return currentUser ? currentUser.token : '';
   }
-
 }

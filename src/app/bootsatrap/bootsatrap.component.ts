@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+
 import { HttpClient } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +21,7 @@ export class BootsatrapComponent {
 
   sessionStorage: any;
 
-  constructor(private toastrService: ToastrService, private fb: FormBuilder,private router: Router) {
+  constructor( private fb: FormBuilder,private router: Router) {
     this.booststrapform = this.fb.group({
       email: [
         '',
@@ -42,19 +42,19 @@ export class BootsatrapComponent {
 //email patterns?
 
   showSuccess() {
-    this.toastrService.success('Message Success!', 'Title Success!');
+   //this.toastrService.success('Message Success!', 'Title Success!');
   }
 
   showInfo() {
-    this.toastrService.info('Message Info!', 'Title Info!');
+    //this.toastrService.info('Message Info!', 'Title Info!');
   }
 
   showWarning() {
-    this.toastrService.warning('Message Warning!', 'Title Warning!');
+   // this.toastrService.warning('Message Warning!', 'Title Warning!');
   }
 
   showError() {
-    this.toastrService.error('Message Error!', 'Title Error!');
+    //this.toastrService.error('Message Error!', 'Title Error!');
   }
   get form() {
     return this.booststrapform.controls;
@@ -72,10 +72,10 @@ export class BootsatrapComponent {
       // Store the data in local storage
       localStorage.setItem('formData', JSON.stringify(this.booststrapform.value));
 
-      this.toastrService.success('Message Success!', 'Title Success!');
+     // this.toastrService.success('Message Success!', 'Title Success!');
       this.router.navigateByUrl('/contact');
     } else {
-      this.toastrService.error('Message Error!', 'Title Error!');
+     // this.toastrService.error('Message Error!', 'Title Error!');
     }
   }
   get(){
