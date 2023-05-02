@@ -21,7 +21,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AboutusComponent } from './common/aboutus/aboutus.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 import { DropdownDirective } from './common/shared/dropdown.directive';
@@ -52,7 +51,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +62,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
     SearchComponent,
     LoginComponent,
     FeedbackComponent,
-    AboutusComponent,
     SidebarComponent,
     DropdownDirective,
     EmployeelistComponent,
@@ -102,7 +99,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     NgxPaginationModule,
     HttpClientModule,
     NgbModule,
-    DashboardModule
+    DashboardModule,
   ],
 })
 export class AppModule {}

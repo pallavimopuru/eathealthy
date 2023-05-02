@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutusComponent } from './common/aboutus/aboutus.component';
 import { CaluclatorComponent } from './common/caluclator/caluclator.component';
 import { ContactComponent } from './common/contact/contact.component';
 import { EmployeelistComponent } from './common/employeelist/employeelist.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'aboutus', component: AboutusComponent, canActivate: [AuthGuard] },
   { path: 'employeelist', component: EmployeelistComponent, canActivate: [AuthGuard] },
   { path: 'Caluclator', component: CaluclatorComponent, canActivate: [AuthGuard] },
   { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
