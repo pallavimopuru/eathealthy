@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { UploadimagesComponent } from './common/uploadimages/uploadimages.component';
-import { DashboardConatinerComponent } from './dashboard-conatiner/dashboard-conatiner.component';
-
+import { DashboardContainerComponent } from './components/dashboard-container/dashboard-container.component';
+import { UploadImagesComponent } from './components/common/upload-images/upload-images.component';
 
 
 @NgModule({
   declarations: [
-    UploadimagesComponent,
-    DashboardConatinerComponent,
-
+    DashboardContainerComponent,
+    UploadImagesComponent
   ],
   imports: [
     CommonModule,

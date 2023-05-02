@@ -8,6 +8,7 @@ import {
 
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -26,7 +27,7 @@ export class ForgotpasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-  ,
+private toastrService:ToastrService,
     private router:Router
 
   ) {}
@@ -76,17 +77,17 @@ export class ForgotpasswordComponent implements OnInit {
       this.formSubmitted = true;
       this.displayDialog = true;
       // this.router.navigateByUrl('/siginin');
-      // //this.toasterService.success('New password updated', 'success!');
+      //this.toasterService.success('New password updated', 'success!');
       sessionStorage.setItem('token', 'hari');
       localStorage.setItem('token', 'pallavi');
     } else {
       this.isformvalid = true;
       // alert('please fill manditory fields');
-      //this.toasterService.error('Please enter Newpassword', 'Error!');
+      this.toastrService.error('Please enter Newpassword', 'Error!');
     }
   }
   onDialogOK() {
-    //this.toasterService.success('New password updated', 'success!');
+   this.toastrService.success('New password updated', 'success!');
     this.router.navigate(['/login']);
 
   }

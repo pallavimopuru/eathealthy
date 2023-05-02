@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class SigninComponent implements OnInit {
   constructor(
     private router: Router,
     fb: FormBuilder,
-
+private toastrService:ToastrService
   ) {
     this.username = sessionStorage.getItem('username')!;
 
@@ -49,9 +50,9 @@ export class SigninComponent implements OnInit {
       email: [
         '',
         [
-          Validators.nullValidator,
+          Validators.required,
 
-          // Validators.pattern('/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/'),
+           Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'),
         ],
       ],
       password: [
@@ -85,12 +86,12 @@ export class SigninComponent implements OnInit {
       sessionStorage.setItem('register', JSON.stringify(this.register));
       sessionStorage.setItem('token', 'pallu');
       this.isformvalid = false;
-      // //this.toasterService.success('register', ' Success!');
+      //this.toasterService.success('register', ' Success!');
       this.router.navigateByUrl('/aboutus');
     } else {
       this.isformvalid = true;
       alert('please enter fileds');
-      //this.toasterService.error('Please Enter all fileds','Error!')
+      this.toastrService.error('Please Enter all fileds','Error!')
     }
   }
 

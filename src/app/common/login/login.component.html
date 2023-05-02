@@ -2,103 +2,127 @@
 
 <div class="container my-5">
   <div class="align-end">
-<button (click)="downloadloginpdf()"  class="btn blue-btn mt-2">Download page</button>
-
+    <button (click)="downloadloginpdf()" class="btn blue-btn mt-2">
+      Download page
+    </button>
   </div>
   <div class="col-md-6 mx-auto bg-form box-shadow">
     <div class="text-center">
-      <h1 class="heading-name">Login for your account </h1>
+      <h1 class="heading-name">Login for your account</h1>
     </div>
     <div class="align-end">
-<!-- <button (click)="downloadloginpage()" >Download page</button> -->
+      <!-- <button (click)="downloadloginpage()" >Download page</button> -->
     </div>
-      <form [formGroup]="loginform">
-        <label>
-          User Name:<span class="error">*</span></label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="userName"
-            [ngClass]="
-            ( isformvalid &&
-             loginform.get('userName').invalid) ||
-
-              ( loginform.get('userName').touched && loginform.get('userName').invalid)
-                ? 'red-box'
-                : ''
-            "
+    <form [formGroup]="loginform">
+      <label> User Name:<span class="error">*</span></label>
+      <div class="d-flex-center">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="userName"
+          [ngClass]="
+            (isformvalid && loginform.get('userName').invalid) ||
+            (loginform.get('userName').touched &&
+              loginform.get('userName').invalid)
+              ? 'red-box'
+              : ''
+          "
+        />
+        <div>
+          <img
+            src="../../../assets/valid-icon.png"
+            class="green-icon"
+            *ngIf="loginform.get('userName').valid"
           />
-          <div
-            class="error"
-            *ngIf="
-            (loginform.get('userName').touched && loginform.get('userName').invalid)||
-            ( isformvalid && loginform.get('userName').hasError('required'))
-            "
-          >
-            Enter user Name
-          </div>
-          <div
-            class="error"
-            *ngIf="
-          (loginform.get('userName').touched && loginform.get('userName').invalid)||
-             (isformvalid &&
-             loginform.get('userName').hasError('minlength'))
-            "
-          >
-            Enter minumun 5 letters user Name
-          </div>
+        </div>
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          (loginform.get('userName').touched &&
+            loginform.get('userName').invalid) ||
+          (isformvalid && loginform.get('userName').hasError('required'))
+        "
+      >
+        Enter user Name
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          (loginform.get('userName').touched &&
+            loginform.get('userName').invalid) ||
+          (isformvalid && loginform.get('userName').hasError('minlength'))
+        "
+      >
+        Enter minumun 5 letters user Name
+      </div>
 
-        <br />
-        <label>
-          Password:<span class="error">*</span></label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="password"
-            [ngClass]="
-              (isformvalid &&
-             loginform.get('password').invalid) ||
-               (loginform.get('password').touched && loginform.get('password').invalid )
-                ? 'red-box'
-                : ''
-            "
-          />
-          <div
-            class="error"
-            *ngIf="
-             (loginform.get('password').touched && loginform.get('password').invalid)
-             ||(isformvalid &&
-             loginform.get('password').hasError('required'))
-            "
-          >
-            Enter password
-          </div>
-          <div
-            class="error"
-            *ngIf="
-              isformvalid &&
-             loginform.get('password').hasError('pattern')
-            "
-          >
-            Enter valid password(one special charecter@#$%%,one capital WERVF,one small rtdfgfgd,one nmber12345)
-          </div>
+      <br />
+      <label> Password:<span class="error">*</span></label>
+      <div class="d-flex-center">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="password"
+        [ngClass]="
+          (isformvalid && loginform.get('password').invalid) ||
+          (loginform.get('password').touched &&
+            loginform.get('password').invalid)
+            ? 'red-box'
+            : ''
+        "
+      />
+      <div>
+        <img
+          src="../../../assets/valid-icon.png"
+          class="green-icon"
+          *ngIf="loginform.get('password').valid"
+        />
+      </div>
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          (loginform.get('password').touched &&
+            loginform.get('password').invalid) ||
+          (isformvalid && loginform.get('password').hasError('required'))
+        "
+      >
+        Enter password
+      </div>
+      <div
+        class="error"
+        *ngIf="isformvalid && loginform.get('password').hasError('pattern')"
+      >
+        Enter valid password(one special charecter@#$%%,one capital WERVF,one
+        small rtdfgfgd,one nmber12345)
+      </div>
 
-        <br />
-        <p><a class="clickable-link" routerLink="/forgotpassword">Forgot Passoword </a></p>
-        <p>Not a member? &nbsp;<a href="/signin">siginup </a></p>
-        <div class="text-center">
-          <button
+      <br />
+      <p>
+        <a class="clickable-link" routerLink="/forgotpassword"
+          >Forgot Passoword
+        </a>
+      </p>
+      <p>Not a member? &nbsp;<a href="/signin">siginup </a></p>
+      <div>
+        <!--
+        <re-captcha
+          siteKey="6LdB_cAlAAAAAObVOyrQc9Ry3_JM2-882xvWvgi-"
+           (resolved)="oncpatcharesolved(captcharesponse)">
+        </re-captcha> -->
+      </div>
+      <div class="text-center">
+        <button
           type="submit"
           class="btn blue-btn mt-2"
           (click)="loginfunction()"
         >
           Submit login
         </button>
-        </div>
-
-      </form>
-<!-- forget passoword code -->
-
-    </div>
+      </div>
+    </form>
+    <!-- forget passoword code -->
   </div>
+</div>
 <app-footer></app-footer>
