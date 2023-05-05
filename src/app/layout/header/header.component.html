@@ -1,6 +1,6 @@
 <div
   *ngIf="
-    router.url.indexOf('login') == -1 || router.url.indexOf('signin') == -1
+    router.url.indexOf('') == -1 && router.url.indexOf('/signin') == -1
   "
 >
   <header class="container-fluid header-eathealthy box-shadow">
@@ -27,7 +27,10 @@
   *ngIf="
     router.url.indexOf('table') != -1 ||
     router.url.indexOf('feedback') != -1 ||
-    router.url.indexOf('aboutus') != -1
+    router.url.indexOf('aboutus') != -1 ||
+    router.url.indexOf('employeelist') !=-1 ||
+    router.url.indexOf('chart') !=-1 ||
+    router.url.indexOf('dashboard')
   "
 >
   <header class="container-fluid header-eathealthy box-shadow">

@@ -1,8 +1,19 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Component, ElementRef, Injectable, OnInit, Renderer2 } from '@angular/core';
-
+import {
+  Component,
+  ElementRef,
+  Injectable,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -42,8 +53,10 @@ export class TableComponent implements OnInit {
   selectedcolor: string;
   constructor(
     private fb: FormBuilder,
-  ,
-    private router: Router,private elRef: ElementRef, private renderer: Renderer2
+    private router: Router,
+    private elRef: ElementRef,
+    private renderer: Renderer2,
+    private toastrService: ToastrService
   ) {}
 
   updateRow(i: number) {
@@ -58,7 +71,7 @@ export class TableComponent implements OnInit {
       title: this.formDataArr[i].title,
       status: this.formDataArr[i].status,
       position: this.formDataArr[i].position,
-      color:this.formDataArr[i].color
+      color: this.formDataArr[i].color,
     };
     // Update the form with the data of the row being edited
     this.tableform.setValue(data);
@@ -79,7 +92,7 @@ export class TableComponent implements OnInit {
       title: ['', [Validators.required]],
       status: ['', [Validators.required]],
       position: ['', [Validators.required]],
-      color:['',[Validators.required]]
+      color: ['', [Validators.required]],
     });
   }
 
@@ -97,7 +110,8 @@ export class TableComponent implements OnInit {
       if (this.editRowIndex !== null) {
         // check if editing an existing row
         const previousFormData = this.formDataArr[this.editRowIndex];
-        isFormDataUpdated = JSON.stringify(formData) !== JSON.stringify(previousFormData);
+        isFormDataUpdated =
+          JSON.stringify(formData) !== JSON.stringify(previousFormData);
         this.formDataArr[this.editRowIndex] = formData; // update existing data
         this.editRowIndex = null; // reset editRowIndex
       } else {
@@ -107,52 +121,71 @@ export class TableComponent implements OnInit {
       // Store updated form data array in sessionStorage
       sessionStorage.setItem('formdata', JSON.stringify(this.formDataArr));
       // Update formDataArr2 with the latest data from sessionStorage
-      this.formDataArr2 = JSON.parse(sessionStorage.getItem('formdata') || '[]');
+      this.formDataArr2 = JSON.parse(
+        sessionStorage.getItem('formdata') || '[]'
+      );
       console.log('formDataArr2', this.formDataArr2);
-
 
       // Display toaster message only if form data is updated
       if (isFormDataUpdated) {
-
-        //this.toasterService.success('Details of employee updated', ' Success!');
+        this.toastrService.success('Details of employee updated', ' Success!');
       }
     } else {
-      //this.toasterService.error('Please Enter All Fields!', 'Title Error!');
+      this.toastrService.error('Please Enter All Fields!', 'Title Error!');
     }
   }
 
   filterData() {
-    return this.formDataArr2.filter(item => {
-
-      if (this.searchTerm && (
+    return this.formDataArr2.filter((item) => {
+      if (
+        this.searchTerm &&
         !item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
         !item.title.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
         !item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
         !item.position.toLowerCase().includes(this.searchTerm.toLowerCase())
-      )) {
+      ) {
         return false;
       }
 
       // check individual search terms
-      if (this.nameSearchTerm && !item.name.toLowerCase().includes(this.nameSearchTerm.toLowerCase())) {
+      if (
+        this.nameSearchTerm &&
+        !item.name.toLowerCase().includes(this.nameSearchTerm.toLowerCase())
+      ) {
         return false;
       }
-      if (this.titleSearchTerm && !item.title.toLowerCase().includes(this.titleSearchTerm.toLowerCase())) {
+      if (
+        this.titleSearchTerm &&
+        !item.title.toLowerCase().includes(this.titleSearchTerm.toLowerCase())
+      ) {
         return false;
       }
-      if (this.statusSearchTerm && !item.status.toLowerCase().includes(this.statusSearchTerm.toLowerCase())) {
+      if (
+        this.statusSearchTerm &&
+        !item.status.toLowerCase().includes(this.statusSearchTerm.toLowerCase())
+      ) {
         return false;
       }
-      if (this.positionSearchTerm && !item.position.toLowerCase().includes(this.positionSearchTerm.toLowerCase())) {
+      if (
+        this.positionSearchTerm &&
+        !item.position
+          .toLowerCase()
+          .includes(this.positionSearchTerm.toLowerCase())
+      ) {
         return false;
       }
       // if no specific search terms and no global search term, include item
-      if (!this.searchTerm && !this.nameSearchTerm && !this.titleSearchTerm && !this.statusSearchTerm && !this.positionSearchTerm) {
+      if (
+        !this.searchTerm &&
+        !this.nameSearchTerm &&
+        !this.titleSearchTerm &&
+        !this.statusSearchTerm &&
+        !this.positionSearchTerm
+      ) {
         return true;
       }
       return true;
     });
-
   }
 
   sortData(columnName: string) {
@@ -178,7 +211,7 @@ export class TableComponent implements OnInit {
     sessionStorage.setItem('formdata', JSON.stringify(this.formDataArr));
     // Update the formDataArr2 array used to display the table
     this.formDataArr2 = JSON.parse(sessionStorage.getItem('formdata') || '[]');
-    //this.toasterService.success('Employee details deleted', ' Success!');
+    this.toastrService.success('Employee details deleted', ' Success!');
   }
   get() {
     return sessionStorage.getItem('formdata');
@@ -201,6 +234,5 @@ export class TableComponent implements OnInit {
   }
   ngOnInit() {
     this.tableformdata();
-
   }
 }

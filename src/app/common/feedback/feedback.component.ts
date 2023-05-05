@@ -50,7 +50,7 @@ export class FeedbackComponent {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+          Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'),
         ],
       ],
       addadress: ['', [Validators.required]],

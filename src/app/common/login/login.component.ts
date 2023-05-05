@@ -9,6 +9,8 @@ import { AuthService } from '../shared/auth.service';
 import html2canvas from 'html2canvas';
 
 import * as html2pdf from 'html2pdf.js';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,14 +22,14 @@ export class LoginComponent implements OnInit {
   formGroup: any;
   isformvalid: boolean;
   register = [];
-  //  myArray: number[] = [];
+  captcharesponse: string;
 
   constructor(
     private router: Router,
     fb: FormBuilder,
     private http: HttpClient,
     private authService: AuthService,
-
+    private toastrService: ToastrService
   ) {
     this.loginform = fb.group({
       userName: ['', [Validators.required]],
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
           ),
         ],
       ],
+    //captcharesponse:['', [Validators.required]]
     });
   }
 
@@ -68,7 +71,7 @@ export class LoginComponent implements OnInit {
       filename: 'page.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
     html2pdf().set(options).from(document.body).save();
   }
@@ -90,14 +93,21 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('register', JSON.stringify(this.register));
       sessionStorage.setItem('username', this.loginform.value.userName);
       sessionStorage.setItem('token', 'hari');
-      //this.toasterService.success('Login', ' Success!');
+      this.toastrService.success('Login', ' Success!');
       this.router.navigateByUrl('/signin');
     } else {
       this.isformvalid = true;
       alert('please fill mandatory fields');
-      //this.toasterService.error('please fill all Login fields ', 'Error!');
+      this.toastrService.error('please fill all Login fields ', 'Error!');
     }
   }
+  // oncpatcharesolved(captcharesponse: string) {
+  //   this.captcharesponse = captcharesponse;
+  //   this.onCaptchaResolved(captcharesponse);
+  //   if (captcharesponse) {
+  //   } else {
+  //   }
+  // }
 
   ngOnInit(): void {}
   login(username: string, password: string) {

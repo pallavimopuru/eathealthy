@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LayoutRoutingModule } from './layout-routing.module';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -11,6 +12,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 
 
 
+  
+    LandingComponent
   ],
   imports: [
     CommonModule,

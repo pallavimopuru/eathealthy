@@ -25,6 +25,7 @@ export class EmployeelistComponent implements OnInit {
   myObjStr: string;
   val2: number = 50;
 
+
   constructor(private _employeservice: EmployeService, ) {} //we are giving employee service here
   changeemp(e) {
     console.log(e.target.value);
@@ -33,6 +34,9 @@ export class EmployeelistComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
+
+
+
   save() {
     // sessionStorage.setItem('name','value');
     console.log(this.savearray);

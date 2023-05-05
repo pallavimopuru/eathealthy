@@ -1,0 +1,49 @@
+<div class="mt-4">
+  <input type="file" (change)="onFileSelected($event)" />
+</div>
+
+<div
+  id="carouselExampleDark"
+  class="carousel carousel-dark slide my-4"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-indicators">
+    <!-- <button type="button" [attr.data-bs-target]="'#carouselExampleDark'" [attr.data-bs-slide-to]="i" [class.active]="i === 0" *ngFor="let image of previewImageUrls; let i = index"></button> -->
+
+    <button
+      type="button"
+      [attr.data-bs-target]="'#carouselExampleDark'"
+      [attr.data-bs-slide-to]="i"
+      [class.active]="i === 0"
+      *ngFor="let image of previewImageUrls; let i = index"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div
+      class="carousel-item active"
+      data-bs-interval="10000"
+      *ngFor="let image of previewImageUrls; let i = index"
+      [class.active]="i === 0"
+    >
+      <img src="..." [src]="image.imageUrl" class="d-block w-100 carousal-image" alt="..." />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
