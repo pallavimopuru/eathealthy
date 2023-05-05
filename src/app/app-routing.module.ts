@@ -14,9 +14,11 @@ import { ChartComponent } from './chart/chart.component';
 import { AuthGuard } from './auth.guard';
 import { ForgotpasswordComponent } from './common/forgotpassword/forgotpassword.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LandingComponent } from './layout/landing/landing.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  {path:'landing',component:LandingComponent},
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
   { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },

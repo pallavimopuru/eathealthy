@@ -50,6 +50,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DashboardContainerComponent } from './dashboard/components/dashboard-container/dashboard-container.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     TablechangesComponent,
     ChartComponent,
     ForgotpasswordComponent,
+    DashboardContainerComponent,
   ],
   providers: [EmployeService], //we are injecting employee service in providers so whole application acn use service
   bootstrap: [AppComponent],

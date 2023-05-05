@@ -87,7 +87,7 @@ private toastrService:ToastrService
       sessionStorage.setItem('token', 'pallu');
       this.isformvalid = false;
       //this.toasterService.success('register', ' Success!');
-      this.router.navigateByUrl('/aboutus');
+      this.router.navigateByUrl('/table');
     } else {
       this.isformvalid = true;
       alert('please enter fileds');

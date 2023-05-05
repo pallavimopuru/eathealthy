@@ -1,6 +1,6 @@
 <div
   *ngIf="
-    router.url.indexOf('') != -1 && router.url.indexOf('/signin') != -1
+    router.url.indexOf('') == -1 && router.url.indexOf('/signin') == -1
   "
 >
   <header class="container-fluid header-eathealthy box-shadow">
