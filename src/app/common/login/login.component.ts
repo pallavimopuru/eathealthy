@@ -6,10 +6,13 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 
-import html2canvas from 'html2canvas';
+
+
 
 import * as html2pdf from 'html2pdf.js';
 import { ToastrService } from 'ngx-toastr';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-login',
@@ -66,15 +69,44 @@ export class LoginComponent implements OnInit {
   //   html2pdf().set(options).from(document.body).save();
   // }
 
-  downloadloginpdf() {
-    const options = {
-      filename: 'page.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-    html2pdf().set(options).from(document.body).save();
+
+  // downloadloginpdf() {
+  //   const options = {
+  //     filename: 'page.pdf',
+  //     image: { type: 'jpeg', quality: 0.98 },
+  //     html2canvas: { scale: 2 },
+  //     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+  //   };
+  //   html2pdf().set(options).from(document.body).save();
+  // }
+
+  downloadPageAsPDF() {
+    const element = document.getElementById('pageContent');
+
+    if (element) {
+      const width = element.offsetWidth;
+      const height = element.offsetHeight;
+
+      // Create a new jsPDF instance with the specified width and height
+      const doc = new jsPDF({
+        orientation: 'l', // Set the orientation to landscape if needed
+        unit: 'px',
+        format: [width, height]
+      });
+
+      html2canvas(element).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        doc.addImage(imgData, 'PNG', 0, 0, width, height);
+
+        doc.save('page.pdf');
+      });
+    } else {
+      console.error("Element 'pageContent' not found in the DOM.");
+    }
   }
+
+
+
 
   get f() {
     return this.loginform.controls;

@@ -121,7 +121,6 @@
                 : 'my_class2'
             "
           >
-
             <td>
               <span>{{ item.name }} </span>
             </td>
@@ -156,191 +155,265 @@
 
       <!-- Add more cells here as needed -->
       <div *ngIf="isActive"></div>
-    </div>
+
+      <div>
+        <input type="file" #upload hidden (change)="onFileSelected($event)" />
+        <button class="blue-btn" (click)="upload.click()">Upload</button>
+      </div>
+      <div *ngIf="selectedFiles.length > 0">
+        Selected File:
+        <ul>
+          <li *ngFor="let file of selectedFiles">{{ file.name }}
+          &nbsp;
+          <span class="delete-icon cursor" (click)="deleteFile(file)"
+            ><i class="pi pi-trash"></i
+          ></span>
+          &nbsp;
+          <span class="download cursor" (click)="downloadFiles(file)">
+            <i class="pi pi-arrow-down"></i>
+          </span>
+          </li>
+        </ul>
+      </div>
+<div class="row">
+  <div class="col-md-4 my-3">
+         <!-- Display newArray -->
+<div *ngFor="let item of newArray">
+  <span>Display array of items</span>{{ item }}</div>
+
   </div>
+  <div class="col-md-4 my-3">
+    <!-- Display newArray1 -->
+<div *ngFor="let item of newArray1">
+  <span>data.age > 20 </span>{{ item | json }}</div>
+
+  </div>
+
+  <div class="col-md-4 my-3">
+
+<!-- Display maparr -->
+<div *ngFor="let item of maparr">
+  <span>value * 2</span>{{ item }}</div>
+
+  </div>
+  <div class="col-md-4 my-3">
+<!-- Display maparr1 -->
+<div *ngFor="let item of maparr1">
+  <span>"Mr. " + value.name</span>{{ item }}</div>
+
 </div>
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="">
-          <h4 class="text-center mt-4">Please fill the below fileds</h4>
-          <div class="align-end m-2">
-            <button type="button" class="align-end" data-bs-dismiss="modal">
-              X
-            </button>
-          </div>
-          <div class="container">
-            <form [formGroup]="tableform">
-              <div class="row my-3">
-                <div class="col-md-4 my-2">
-                  <div class="field">
-                    <label class="label-name">Name</label><br />
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="name"
-                      pInputText
-                      [ngClass]="
-                        (isformvalid && tableform.get('name')?.invalid) ||
-                        (tableform.get('name')?.invalid &&
-                          tableform.get('name')?.touched)
-                          ? 'red-box'
-                          : ''
-                      "
-                    />
-                    <div
-                      class="error"
-                      *ngIf="
-                        (tableform.get('name')?.invalid &&
-                          tableform.get('name')?.touched) ||
-                        (isformvalid &&
-                          tableform.get('name')?.hasError('required'))
-                      "
-                    >
-                      Please enter name
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-2">
-                  <div class="field">
-                    <label class="label-name">Title</label><br />
-                    <input
-                    type="text"
-                    class="form-control"
-                    formControlName="title"
-                    pInputText
-                    [ngClass]="
-                      (isformvalid && tableform.get('title')?.invalid) ||
-                      (tableform.get('title')?.invalid &&
-                        tableform.get('title')?.touched)
-                        ? 'red-box'
-                        : ''
-                    "
-                  />
-                  <div
-                    class="error"
-                    *ngIf="
-                      (tableform.get('title')?.invalid &&
-                        tableform.get('title')?.touched) ||
-                      (isformvalid &&
-                        tableform.get('title')?.hasError('required'))
-                    "
-                  >
-                    Please enter title
-                  </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-2">
-                  <div class="field">
-                    <label class="label-name">Status</label><br />
-                    <input
-                    type="text"
-                    class="form-control"
-                    formControlName="status"
-                    pInputText
-                    [ngClass]="
-                      (isformvalid && tableform.get('status')?.invalid) ||
-                      (tableform.get('status')?.invalid &&
-                        tableform.get('status')?.touched)
-                        ? 'red-box'
-                        : ''
-                    "
-                  />
-                  <div
-                    class="error"
-                    *ngIf="
-                      (tableform.get('status')?.invalid &&
-                        tableform.get('status')?.touched) ||
-                      (isformvalid &&
-                        tableform.get('status')?.hasError('required'))
-                    "
-                  >
-                    Please enter status
-                  </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-2">
-                  <div class="field">
-                    <label class="label-name">Position</label><br />
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="position"
-                      pInputText
-                      [ngClass]="
-                        (isformvalid && tableform.get('position')?.invalid) ||
-                        (tableform.get('position')?.invalid &&
-                          tableform.get('position')?.touched)
-                          ? 'red-box'
-                          : ''
-                      "
-                    />
-                    <div
-                      class="error"
-                      *ngIf="
-                        (tableform.get('position')?.invalid &&
-                          tableform.get('position')?.touched) ||
-                        (isformvalid &&
-                          tableform.get('position')?.hasError('required'))
-                      "
-                    >
-                      Please enter position
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-2">
-                  <div class="field">
-                    <label class="label-name">color</label><br />
+<div class="col-md-4 my-3">
 
-                    <select formControlName="color">
-                      <option value="">--select a color--</option>
-                      <option
-                        *ngFor="let color of colors"
-                        [value]="color.color"
-                      >
-                        {{ color.name }}
-                      </option>
-                    </select>
 
-                    <div
-                      class="error"
-                      *ngIf="
-                        (tableform.get('color')?.invalid &&
-                          tableform.get('color')?.touched) ||
-                        (isformvalid &&
-                          tableform.get('color')?.hasError('required'))
-                      "
-                    >
-                      Please enter color
-                    </div>
-                  </div>
-                </div>
+
+
+  <!-- Display reduce -->
+  <p>{{ reduce }}</p>
+
+</div>
+<div  class="col-md-4 my-3" >
+  <p *ngFor="let item of dataArr">Name: {{ item.name }}-Age: {{ item.age }}-ID: {{ item.id }}</p>
+
+</div>
+<div class="col-md-4">
+  <p *ngFor="let item of dataarray">{{item}}</p>
+</div>
+</div>
+
+    </div>
+
+    </div>
+
+    <map name="imagemap">
+      <area shape="rect" coords="0,0,100,100" href="page1.html" alt="Area 1">
+      <area shape="circle" coords="150,100,50" href="page2.html" alt="Area 2">
+    </map>
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="">
+              <h4 class="text-center mt-4">Please fill the below fileds</h4>
+              <div class="align-end m-2">
+                <button type="button" class="align-end" data-bs-dismiss="modal">
+                  X
+                </button>
               </div>
-            </form>
-          </div>
-          <div class="align-end m-2">
-            <button
-              (click)="submittable()"
-              type="button"
-              class="btn blue-btn"
-              data-bs-dismiss="modal"
-              [disabled]="!tableform.valid"
-            >
-              Update changes
-            </button>
+              <div class="container">
+                <form [formGroup]="tableform">
+                  <div class="row my-3">
+                    <div class="col-md-4 my-2">
+                      <div class="field">
+                        <label class="label-name">Name</label><br />
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="name"
+                          pInputText
+                          [ngClass]="
+                            (isformvalid && tableform.get('name')?.invalid) ||
+                            (tableform.get('name')?.invalid &&
+                              tableform.get('name')?.touched)
+                              ? 'red-box'
+                              : ''
+                          "
+                        />
+                        <div
+                          class="error"
+                          *ngIf="
+                            (tableform.get('name')?.invalid &&
+                              tableform.get('name')?.touched) ||
+                            (isformvalid &&
+                              tableform.get('name')?.hasError('required'))
+                          "
+                        >
+                          Please enter name
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                      <div class="field">
+                        <label class="label-name">Title</label><br />
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="title"
+                          pInputText
+                          [ngClass]="
+                            (isformvalid && tableform.get('title')?.invalid) ||
+                            (tableform.get('title')?.invalid &&
+                              tableform.get('title')?.touched)
+                              ? 'red-box'
+                              : ''
+                          "
+                        />
+                        <div
+                          class="error"
+                          *ngIf="
+                            (tableform.get('title')?.invalid &&
+                              tableform.get('title')?.touched) ||
+                            (isformvalid &&
+                              tableform.get('title')?.hasError('required'))
+                          "
+                        >
+                          Please enter title
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                      <div class="field">
+                        <label class="label-name">Status</label><br />
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="status"
+                          pInputText
+                          [ngClass]="
+                            (isformvalid && tableform.get('status')?.invalid) ||
+                            (tableform.get('status')?.invalid &&
+                              tableform.get('status')?.touched)
+                              ? 'red-box'
+                              : ''
+                          "
+                        />
+                        <div
+                          class="error"
+                          *ngIf="
+                            (tableform.get('status')?.invalid &&
+                              tableform.get('status')?.touched) ||
+                            (isformvalid &&
+                              tableform.get('status')?.hasError('required'))
+                          "
+                        >
+                          Please enter status
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                      <div class="field">
+                        <label class="label-name">Position</label><br />
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="position"
+                          pInputText
+                          [ngClass]="
+                            (isformvalid &&
+                              tableform.get('position')?.invalid) ||
+                            (tableform.get('position')?.invalid &&
+                              tableform.get('position')?.touched)
+                              ? 'red-box'
+                              : ''
+                          "
+                        />
+                        <div
+                          class="error"
+                          *ngIf="
+                            (tableform.get('position')?.invalid &&
+                              tableform.get('position')?.touched) ||
+                            (isformvalid &&
+                              tableform.get('position')?.hasError('required'))
+                          "
+                        >
+                          Please enter position
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                      <div class="field">
+                        <label class="label-name">color</label><br />
+
+                        <select formControlName="color">
+                          <option value="">--select a color--</option>
+                          <option
+                            *ngFor="let color of colors"
+                            [value]="color.color"
+                          >
+                            {{ color.name }}
+                          </option>
+                        </select>
+
+                        <div
+                          class="error"
+                          *ngIf="
+                            (tableform.get('color')?.invalid &&
+                              tableform.get('color')?.touched) ||
+                            (isformvalid &&
+                              tableform.get('color')?.hasError('required'))
+                          "
+                        >
+                          Please enter color
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="align-end m-2">
+                <button
+                  (click)="submittable()"
+                  type="button"
+                  class="btn blue-btn"
+                  data-bs-dismiss="modal"
+                  [disabled]="!tableform.valid"
+                >
+                  Update changes
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <app-footer></app-footer>
   </div>
-</div>
-<app-footer></app-footer>

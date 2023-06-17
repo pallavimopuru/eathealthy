@@ -14,6 +14,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { from, toArray ,filter,map} from 'rxjs';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -51,6 +52,34 @@ export class TableComponent implements OnInit {
   positionSearchTerm: string = '';
   itemsPerPage: number = 10;
   selectedcolor: string;
+  selectedFiles: File[] = [];
+  fileData: string;
+  fileDataList: { file: File; name: string; base64Data: string }[] = [];
+  file: File;
+  name: string;
+  base64Data: string;
+  values = [1, 2, 3, 4, 5];
+  valuearrobj = [
+    { name: 'john', age: 23 },
+    { name: 'henry', age: 20 },
+    { name: 'ajay', age: 27 },
+    { name: 'priya', age: 33 },
+    { name: 'mehrin', age: 39 },
+  ];
+  dataArr = [
+    { name: 'ajay', age: 23, id: '1' },
+    { name: 'pranay', age: 20, id: '2' },
+    { name: 'henshi', age: 27, id: '3' },
+    { name: 'dinesh', age: 33, id: '4' },
+    { name: 'priya', age: 39, id: '5' },
+  ];
+  public newArray1: any[] = [];
+  public newarraymap: any[] = [];
+  public maparr1: string[] = []; // Assuming it is an array of strings
+  public newArray: any[] = [];
+  public maparr: any[] = [];
+  dataarray:any;
+  reduce: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -58,7 +87,49 @@ export class TableComponent implements OnInit {
     private renderer: Renderer2,
     private toastrService: ToastrService
   ) {}
+  // Your method where you perform the filtering, mapping, and reducing
+  yourMethod() {
+    // Filter the values and assign to newArray
+    this.newArray = this.values.filter((data) => {
+      return data * 2;
+    });
+    console.log('newArray', this.newArray);
+    // Filter the valuearrobj and assign to newArray1
+    this.newArray1 = this.valuearrobj.filter((data) => {
+      return data.age > 20;
+    });
 
+    console.log('newArray1', this.newArray1);
+
+    // Map the values and assign to maparr
+    this.maparr = this.values.map((value) => {
+      return value * 2;
+    });
+    console.log('maparr', this.maparr);
+
+    // Map the valuearrobj and assign to maparr1
+    this.maparr1 = this.valuearrobj.map((value) => {
+      return 'Mr. ' + value.name;
+    });
+    console.log('maparr1', this.maparr1);
+
+    // Reduce the values and assign to reduce
+    this.reduce = this.values.reduce((previousValue, currentValue) => {
+      return previousValue + currentValue;
+    }, 0);
+    console.log('reduce', this.reduce);
+//by using from operator we can convert array to observable
+const source = from(this.dataArr);
+
+source.pipe(
+  filter((data) => data.name.length > 6),
+  map((data)=>data.name)
+).subscribe((res) => {
+  this.dataarray = res;
+  console.log('dataArrsubscribe', res);
+});
+  }
+  // ================================
   updateRow(i: number) {
     this.isEditing[i] = false;
   }
@@ -232,7 +303,90 @@ export class TableComponent implements OnInit {
     // Set the color property of the corresponding item in filterData() array
     this.filterData()[i].color = this.selectedcolor;
   }
+
+  onFileSelected(event: any) {
+    const files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      this.selectedFiles.push(file);
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const fileData = {
+        file: file,
+        name: file.name,
+        base64Data: reader.result as string,
+        fileType: file.type.split('/')[1], // Extract file extension from MIME type
+      };
+      this.fileDataList.push(fileData);
+    };
+  }
+
+  downloadFiles(file) {
+    this.fileDataList.forEach((fileData) => {
+      const base64Data = fileData.base64Data;
+      const fileName = fileData.name;
+
+      // Convert base64 to blob
+      const byteString = atob(base64Data.split(',')[1]);
+      const mimeString = base64Data.split(',')[0].split(':')[1].split(';')[0];
+      const ab = new ArrayBuffer(byteString.length);
+      const ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([ab], { type: mimeString });
+
+      // Create a temporary link element
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = fileName;
+
+      // Programmatically trigger the click event on the link
+      downloadLink.dispatchEvent(
+        new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        })
+      );
+
+      // Clean up the temporary link and object URL
+      URL.revokeObjectURL(downloadLink.href);
+    });
+  }
+
+  isSupportedFile(extension: string): boolean {
+    const supportedExtensions = [
+      'pdf',
+      'xlsx',
+      'doc',
+      'docx',
+      'xls',
+      'xlsb',
+      'xlsm',
+      'csv',
+      'png',
+      'jpg',
+      'jpeg',
+    ];
+    return supportedExtensions.includes(extension.toLowerCase());
+  }
+  deleteFile(file: File) {
+    const index = this.selectedFiles.indexOf(file);
+    if (index !== -1) {
+      this.selectedFiles.splice(index, 1);
+      this.fileDataList.splice(index, 1);
+    }
+  }
+
   ngOnInit() {
     this.tableformdata();
+    this.yourMethod();
   }
 }
