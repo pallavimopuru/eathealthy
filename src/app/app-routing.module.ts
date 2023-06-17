@@ -19,17 +19,17 @@ import { LandingComponent } from './layout/landing/landing.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {path:'landing',component:LandingComponent},
-  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
-  { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
-  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
-  { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
-  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'employeelist', component: EmployeelistComponent, canActivate: [AuthGuard] },
-  { path: 'Caluclator', component: CaluclatorComponent, canActivate: [AuthGuard] },
-  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
-  { path: 'tablechanges', component: TablechangesComponent, canActivate: [AuthGuard] },
-  { path: 'chart', component: ChartComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'signin', component: SigninComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'employeelist', component: EmployeelistComponent },
+  { path: 'Caluclator', component: CaluclatorComponent },
+  { path: 'table', component: TableComponent },
+  { path: 'tablechanges', component: TablechangesComponent },
+  { path: 'chart', component: ChartComponent },
   {path:'forgotpassword',component:ForgotpasswordComponent,canActivate:[AuthGuard]}
 ];
 
