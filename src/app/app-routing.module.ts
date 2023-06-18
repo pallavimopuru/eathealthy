@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'table', component: TableComponent },
   { path: 'tablechanges', component: TablechangesComponent },
   { path: 'chart', component: ChartComponent },
-  {path:'forgotpassword',component:ForgotpasswordComponent,canActivate:[AuthGuard]}
+  {path:'forgotpassword',component:ForgotpasswordComponent}
 ];
 
 @NgModule({
